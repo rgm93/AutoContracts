@@ -1,0 +1,35 @@
+{
+  "boolean": {
+    "radio": true
+  },
+  "assignmentPercentage": 50,
+  "conditional": {
+    "¿Se regula una garantía a primer requerimiento?": "No",
+    "selectorTP": "Total"
+  },
+  "arrayOfConditionals": [
+    {
+      "Tipo de Garantía": "Prenda de Acciones"
+    },
+    {
+      "Tipo de Garantía": "Prenda de Participaciones"
+    },
+    {
+      "Tipo de Garantía": "Prenda de Derechos de Crédito"
+    },
+    {
+      "Tipo de Garantía": "Hipoteca"
+    }
+  ],
+  "arrayOfConditionals2": [
+    {
+      "Sociedades Pignorada": "Sociedades Pignorada"
+    },
+    {
+      "Pignorante": "Pignorante"
+    },
+    {
+      "Hipotecante": "Hipotecante"
+    }
+  ]
+}

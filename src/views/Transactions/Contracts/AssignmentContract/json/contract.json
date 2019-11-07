@@ -1,0 +1,114 @@
+{
+   "title": "",
+   "type": "object",
+   "properties": {
+      "form": {
+         "title": "1. Partes y datos del contrato",
+         "type": "object",
+         "required": [
+            "city",
+            "date"
+         ],
+         "properties": {
+            "assignor": {
+               "type": "object",
+               "title": "Cedente",
+               "required": [
+                  "name",
+                  "nif",
+                  "socialDom"
+               ],
+               "properties": {
+                  "name": {
+                     "type": "string",
+                     "minLength": 3,
+                     "maxLength": 160,
+                     "title": "Nombre"
+                  },
+                  "nif": {
+                     "type": "string",
+                     "minLength": 9,
+                     "maxLength": 9,
+                     "title": "NIF"
+                  },
+                  "socialDom": {
+                     "type": "string",
+                     "minLength": 3,
+                     "maxLength": 200,
+                     "title": "Domicilio Social"
+                  }
+               }
+            },
+            "transferee": {
+               "type": "object",
+               "title": "Cesionario",
+               "required": [
+                  "name",
+                  "nif",
+                  "socialDom",
+                  "contactNotify",
+                  "addressNotify",
+                  "phone",
+                  "email"
+               ],
+               "properties": {
+                  "name": {
+                     "type": "string",
+                     "minLength": 3,
+                     "maxLength": 160,
+                     "title": "Nombre"
+                  },
+                  "nif": {
+                     "type": "string",
+                     "minLength": 9,
+                     "maxLength": 9,
+                     "title": "NIF"
+                  },
+                  "socialDom": {
+                     "type": "string",
+                     "minLength": 3,
+                     "maxLength": 200,
+                     "title": "Domicilio Social"
+                  },
+                  "contactNotify": {
+                     "type": "string",
+                     "minLength": 3,
+                     "maxLength": 200,
+                     "title": "Contacto a efectos de notificaciones"
+                  },
+                  "addressNotify": {
+                     "type": "string",
+                     "minLength": 3,
+                     "maxLength": 200,
+                     "title": "Dirección a efectos de notificaciones"
+                  },
+                  "phone": {
+                     "type": "integer",
+                     "minLength": 12,
+                     "maxLength": 12,
+                     "title": "Teléfono"
+                  },
+                  "email": {
+                     "type": "string",
+                     "format": "email",
+                     "minLength": 5,
+                     "maxLength": 50,
+                     "title": "E-mail"
+                  }
+               }
+            },
+            "city": {
+               "type": "string",
+               "minLength": 3,
+               "maxLength": 50,
+               "title": "Ciudad"
+            },
+            "date": {
+               "type": "string",
+               "format": "date",
+               "title": "Fecha"
+            }
+         }
+      }
+   }
+}

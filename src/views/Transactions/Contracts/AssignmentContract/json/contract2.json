@@ -1,0 +1,706 @@
+{
+   "title": "",
+   "type": "object",
+   "properties": {
+      "form": {
+         "title": "2. Datos del Contrato de Financiación y las Garantías",
+         "type": "object",
+         "properties": {
+            "financeContract": {
+               "type": "object",
+               "title": "2.1 - Contrato de Financiación",
+               "required": [
+                  "financeAmmount",
+                  "date",
+                  "nameAgent",
+                  "city",
+                  "notary",
+                  "protocol"
+               ],
+               "properties": {
+                  "financeAmmount": {
+                     "type": "number",
+                     "minLength": 5,
+                     "maxLength": 160,
+                     "title": "Cantidad de financiación"
+                  },
+                  "date": {
+                     "type": "string",
+                     "format": "date",
+                     "title": "Fecha",
+                     "default": ""
+                  },
+                  "debtor": {
+                     "type": "object",
+                     "title": "Deudores",
+                     "required": [
+                        "arrayOfConditionalsObject"
+                     ],
+                     "properties": {
+                        "arrayOfConditionalsObject": {
+                           "type": "array",
+                           "title":"",
+                           "items": {
+                              "$ref": "#/definitions/debtor"
+                           },
+                           "uniqueItems": true
+                        }
+                     }
+                  },
+                  "nameAgent": {
+                     "type": "string",
+                     "minLength": 5,
+                     "maxLength": 160,
+                     "title": "Agente"
+                  },
+                  "city": {
+                     "type": "string",
+                     "minLength": 3,
+                     "maxLength": 50,
+                     "title": "Ciudad de Firma"
+                  },
+                  "notary": {
+                     "type": "string",
+                     "minLength": 5,
+                     "maxLength": 160,
+                     "title": "Notario"
+                  },
+                  "protocol": {
+                     "type": "number",
+                     "minLength": 1,
+                     "maxLength": 5,
+                     "title": "Protocolo"
+                  },
+                  "assignmentClause": {
+                     "type": "object",
+                     "title": "Cláusula de cesiones",
+                     "required": [
+                        "numberClause",
+                        "titleClause"
+                     ],
+                     "properties": {
+                        "numberClause": {
+                           "type": "number",
+                           "minLength": 1,
+                           "maxLength": 5,
+                           "title": "Número de Cláusula"
+                        },
+                        "titleClause": {
+                           "type": "string",
+                           "minLength": 5,
+                           "maxLength": 160,
+                           "title": "Título de la Cláusula"
+                        }
+                     }
+                  },
+                  "sunsetClause": {
+                     "type": "object",
+                     "title": "Cláusula de Causas de Vencimiento Anticipado",
+                     "required": [
+                        "numberClause",
+                        "titleClause"
+                     ],
+                     "properties": {
+                        "numberClause": {
+                           "type": "number",
+                           "minLength": 1,
+                           "maxLength": 5,
+                           "title": "Número de Cláusula"
+                        },
+                        "titleClause": {
+                           "type": "string",
+                           "minLength": 5,
+                           "maxLength": 160,
+                           "title": "Título de la Cláusula"
+                        }
+                     }
+                  },
+                  "notifyClause": {
+                     "type": "object",
+                     "title": "Cláusula de Notificaciones",
+                     "required": [
+                        "numberClause",
+                        "titleClause"
+                     ],
+                     "properties": {
+                        "numberClause": {
+                           "type": "number",
+                           "minLength": 1,
+                           "maxLength": 5,
+                           "title": "Número de Cláusula"
+                        },
+                        "titleClause": {
+                           "type": "string",
+                           "minLength": 5,
+                           "maxLength": 160,
+                           "title": "Título de la Cláusula"
+                        }
+                     }
+                  },
+                  "conditional": {
+                     "title": "",
+                     "$ref": "#/definitions/guaranteeFirst",
+                     "uniqueItems": true
+                  }
+               }
+            },
+            "guaranteesFinance": {
+               "type": "object",
+               "title": "2.2 - Garantías",
+               "required": [
+                  "arrayOfConditionals"
+               ],
+               "properties": {
+                  "arrayOfConditionals": {
+                     "type": "array",
+                     "title":"",
+                     "items": {
+                        "$ref": "#/definitions/guaranteesFinance"
+                     },
+                     "uniqueItems": true
+                  }
+               }
+            },
+            "assignmentDetails": {
+               "type": "object",
+               "title": "2.3 - Detalles de la cesión",
+               "required": [
+                  "assignmentDate"
+               ],
+               "properties": {
+                  "assignmentDate": {
+                     "type": "string",
+                     "format": "date",
+                     "title": "Fecha",
+                     "default": ""
+                  },
+                  "assignmentAmmount": {
+                     "type": "object",
+                     "title": "Cantidad cedida",
+                     "required": [
+                        "currency",
+                        "percentage"
+                     ],
+                     "properties": {
+                        "currency":{
+                           "type": "number",
+                           "title":"Euros",
+                           "minLength": 1,
+                           "maxLength": 20
+                        },
+                        "percentage": {
+                           "type":"number",
+                           "minLength": 1,
+                           "maxLength": 7,
+                           "title":"Porcentaje sobre el total del Contrato de Financiación (%)"
+                        },
+                        "selectorTP": {
+                           "type": "object",
+                           "title": "",
+                           "description": "Tipo de Cesión",
+                           "anyOf": [
+                              {
+                                 "title": "Total"
+                              },
+                              {
+                                "title": "Parcial",
+                                "required": [
+                                   "ammount",
+                                   "percentage"
+                                ],
+                                "properties": {
+                                  "ammount": {
+                                    "type": "number",
+                                    "minLength": 1,
+                                    "maxLength": 20,
+                                    "title": "Cantidad retenida por el Cedente"
+                                  },
+                                  "percentage": {
+                                    "type": "number",
+                                    "minLength": 1,
+                                    "maxLength": 7,
+                                    "title": "Porcentaje retenido por el Cedente (%)"
+                                  }
+                                }
+                              }
+                            ],
+                           "default": ""
+                        },
+                        "assignmentPrice": {
+                           "type": "object",
+                           "title": "Precio de la cesión",
+                           "required": [
+                              "price"
+                           ],
+                           "properties": {
+                              "price": {
+                                 "type": "number",
+                                 "minLength": 1,
+                                 "maxLength": 20,
+                                 "title": "Precio de la sesión"
+                              }
+                           }
+                        },
+                        "payDetails": {
+                           "type": "object",
+                           "title": "Detalles del pago",
+                           "required": [
+                              "bankAccount"
+                           ],
+                           "properties": {
+                              "bankAccount": {
+                                 "type": "string",
+                                 "minLength": 24,
+                                 "maxLength": 24,
+                                 "title": "Cuenta bancaria"
+                              },
+                              "limitHour": {
+                                 "type": "object",
+                                 "title": "Hora límite de pago",
+                                 "required": [
+                                    "hour",
+                                    "minutes"
+                                 ],
+                                 "properties": {
+                                    "hour": {
+                                       "type": "number",
+                                       "title": "Hora",
+                                       "minimum": 0,
+                                       "maximum": 23
+                                    },
+                                    "minutes": {
+                                       "type": "number",
+                                       "title": "Minutos",
+                                       "minimum": 0,
+                                       "maximum": 59
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   },
+   "definitions": {
+      "guaranteeFirst": {
+         "title": "Guarantee",
+         "type": "object",
+         "properties": {
+            "¿Se regula una garantía a primer requerimiento?": {
+               "type": "string",
+               "enum": [
+                  "No",
+                  "Si"
+               ],
+               "default": "No"
+            }
+         },
+         "required": [
+            "¿Se regula una garantía a primer requerimiento?"
+         ],
+         "dependencies": {
+            "¿Se regula una garantía a primer requerimiento?": {
+               "oneOf": [
+                  {
+                     "properties": {
+                        "¿Se regula una garantía a primer requerimiento?": {
+                           "enum": [
+                              "No"
+                           ]
+                        }
+                     }
+                  },
+                  {
+                     "properties": {
+                        "¿Se regula una garantía a primer requerimiento?": {
+                           "enum": [
+                              "Si"
+                           ]
+                        },
+                        "Número de Cláusula": {
+                           "type": "number",
+                           "minLength": 1,
+                           "maxLength": 5
+                        },
+                        "Título de Cláusula": {
+                           "type": "string",
+                           "minLength": 5,
+                           "maxLength": 160
+                        }
+                     },
+                     "required": [
+                        "Número de Cláusula",
+                        "Título de Cláusula"
+                     ]
+                  }
+               ]
+            }
+         }
+      },
+      "guaranteesFinance": {
+         "title": "",
+         "type": "object",
+         "properties": {
+            "Tipo de Garantía": {
+               "type": "string",
+               "enum": [
+                  "Prenda de Acciones",
+                  "Prenda de Participaciones",
+                  "Prenda de Derechos de Crédito",
+                  "Hipoteca"
+               ],
+               "default": "Prenda de Acciones"
+            }
+         },
+         "required": [
+            "Tipo de Garantía"
+         ],
+         "dependencies": {
+            "Tipo de Garantía": {
+               "oneOf": [
+                  {
+                     "properties": {
+                        "Tipo de Garantía": {
+                           "enum": [
+                              "Prenda de Acciones"
+                           ]
+                        },
+                        "Sociedades Pignorada": {
+                           "type": "object",
+                           "title": "Sociedades Pignoradas",
+                           "properties": {
+                              "arrayOfConditionals2": {
+                                 "type": "array",
+                                 "title":"",
+                                 "items": {
+                                    "$ref": "#/definitions/guaranteesFinance/pledged"
+                                 }
+                              }
+                           }
+                        },
+                        "Pignorante": {
+                           "type": "object",
+                           "title": "Pignorantes",
+                           "properties": {
+                              "arrayOfConditionals2": {
+                                 "type": "array",
+                                 "title":"",
+                                 "items": {
+                                    "$ref": "#/definitions/guaranteesFinance/pignorant"
+                                 }
+                              }
+                           }
+                        },
+                        "Fecha":{
+                           "type": "string",
+                           "format": "date",
+                           "title": "Fecha"
+                        },
+                        "Ciudad":{
+                           "type": "string",
+                           "minLength": 3,
+                           "maxLength": 50
+                        },
+                        "Notario":{
+                           "type": "string",
+                           "minLength": 5,
+                           "maxLength": 160
+                        },
+                        "Protocolo":{
+                           "type": "number",
+                           "minLength": 1,
+                           "maxLength": 5
+                        }
+                     },
+                     "required": [
+                        "Sociedades Pignorada",
+                        "Pignorante",
+                        "Fecha",
+                        "Ciudad",
+                        "Notario",
+                        "Protocolo"
+                     ]
+                  },
+                  {
+                     "properties": {
+                        "Tipo de Garantía": {
+                           "enum": [
+                              "Prenda de Participaciones"
+                           ]
+                        },
+                        "Sociedades Pignorada": {
+                           "type": "object",
+                           "title": "Sociedades Pignoradas",
+                           "properties": {
+                              "arrayOfConditionals2": {
+                                 "type": "array",
+                                 "title":"",
+                                 "items": {
+                                    "$ref": "#/definitions/guaranteesFinance/pledged"
+                                 }
+                              }
+                           }
+                        },
+                        "Pignorante": {
+                           "type": "object",
+                           "title": "Pignorante(s)",
+                           "properties": {
+                              "arrayOfConditionals2": {
+                                 "type": "array",
+                                 "title":"",
+                                 "items": {
+                                    "$ref": "#/definitions/guaranteesFinance/pignorant"
+                                 }
+                              }
+                           }
+                        },
+                        "Fecha":{
+                           "type": "string",
+                           "format": "date",
+                           "title": "Fecha"
+                        },
+                        "Ciudad":{
+                           "type": "string",
+                           "minLength": 3,
+                           "maxLength": 50
+                        },
+                        "Notario":{
+                           "type": "string",
+                           "minLength": 5,
+                           "maxLength": 160
+                        },
+                        "Protocolo":{
+                           "type": "number",
+                           "minLength": 1,
+                           "maxLength": 5
+                        }
+                     },
+                     "required": [
+                        "Sociedades Pignorada",
+                        "Pignorante",
+                        "Fecha",
+                        "Ciudad",
+                        "Notario",
+                        "Protocolo"
+                     ]
+                  },
+                  {
+                     "properties": {
+                        "Tipo de Garantía": {
+                           "enum": [
+                              "Prenda de Derechos de Crédito"
+                           ]
+                        },
+                        "Pignorante": {
+                           "type": "object",
+                           "title": "Pignorante(s)",
+                           "properties": {
+                              "arrayOfConditionals2": {
+                                 "type": "array",
+                                 "title":"",
+                                 "items": {
+                                    "$ref": "#/definitions/guaranteesFinance/pignorant"
+                                 }
+                              }
+                           }
+                        },
+                        "Fecha":{
+                           "type": "string",
+                           "format": "date",
+                           "title": "Fecha"
+                        },
+                        "Ciudad":{
+                           "type": "string",
+                           "minLength": 3,
+                           "maxLength": 50
+                        },
+                        "Notario":{
+                           "type": "string",
+                           "minLength": 5,
+                           "maxLength": 160
+                        },
+                        "Protocolo":{
+                           "type": "number",
+                           "minLength": 1,
+                           "maxLength": 5
+                        }
+                     },
+                     "required": [
+                        "Pignorante",
+                        "Fecha",
+                        "Ciudad",
+                        "Notario",
+                        "Protocolo"
+                     ]
+                  },
+                  {
+                     "properties": {
+                        "Tipo de Garantía": {
+                           "enum": [
+                              "Hipoteca"
+                           ]
+                        },
+                        "Hipotecante": {
+                           "type": "object",
+                           "title": "Hipotecante(s)",
+                           "properties": {
+                              "arrayOfConditionals2": {
+                                 "type": "array",
+                                 "title":"",
+                                 "items": {
+                                    "$ref": "#/definitions/guaranteesFinance/mortgagor"
+                                 }
+                              }
+                           }
+                        },
+                        "Fecha":{
+                           "type": "string",
+                           "format": "date",
+                           "title": "Fecha"
+                        },
+                        "Ciudad":{
+                           "type": "string",
+                           "minLength": 3,
+                           "maxLength": 50
+                        },
+                        "Notario":{
+                           "type": "string",
+                           "minLength": 5,
+                           "maxLength": 160
+                        },
+                        "Protocolo":{
+                           "type": "number",
+                           "minLength": 1,
+                           "maxLength": 5
+                        }
+                     },
+                     "required": [
+                        "Hipotecante",
+                        "Fecha",
+                        "Ciudad",
+                        "Notario",
+                        "Protocolo"
+                     ]
+                  }
+               ]
+            }
+         },
+         "pledged": {
+            "title": "",
+            "type": "object",
+            "properties": {
+               "Sociedad Pignorada": {
+                  "title": "Sociedad Pignorada",
+                  "type": "string"
+               }
+            },
+            "required": [
+               "Sociedad Pignorada"
+            ],
+            "dependencies": {
+               "Sociedad Pignorada": {
+                  "oneOf": [
+                  {
+                     "properties": {
+                        "Sociedad Pignorada": {
+                           "type": "string",
+                           "minLength": 5,
+                           "maxLength": 160
+                        }
+                     }
+                  }
+                  ]
+               }
+            }
+         },
+         "pignorant": {
+            "title": "",
+            "type": "object",
+            "properties": {
+               "Pignorante": {
+                  "title": "Pignorante",
+                  "type": "string"
+               }
+            },
+            "required": [
+               "Pignorante"
+            ],
+            "dependencies": {
+               "Pignorante": {
+                  "oneOf": [
+                  {
+                     "properties": {
+                        "Pignorante": {
+                           "type": "string",
+                           "minLength": 5,
+                           "maxLength": 160
+                        }
+                     }
+                  }
+                  ]
+               }
+            }
+         },
+         "mortgagor": {
+            "title": "",
+            "type": "object",
+            "properties": {
+               "Hipotecante": {
+                  "title": "Hipotecante",
+                  "type": "string"
+               }
+            },
+            "required": [
+               "Hipotecante"
+            ],
+            "dependencies": {
+               "Hipotecante": {
+                  "oneOf": [
+                  {
+                     "properties": {
+                        "Hipotecante": {
+                           "type": "string",
+                           "minLength": 5,
+                           "maxLength": 160
+                        }
+                     }
+                  }
+                  ]
+               }
+            }
+         }
+      },
+      "debtor": {
+         "title": "",
+         "type": "object",
+         "properties": {
+            "Deudor": {
+               "title": "Deudor",
+               "type": "string"
+            }
+         },
+         "required": [
+            "Deudor"
+         ],
+         "dependencies": {
+            "Deudor": {
+               "oneOf": [
+               {
+                  "properties": {
+                     "Deudor": {
+                        "type": "string",
+                        "minLength": 5,
+                        "maxLength": 160
+                     }
+                  }
+               }
+               ]
+            }
+         }
+      }
+   }
+}
