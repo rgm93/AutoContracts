@@ -12,7 +12,7 @@ const pagesStyle = theme => ({
     top: "0"
   },
   fullPage: {
-    padding: "120px 0",
+    //padding: "120px 0",
     position: "relative",
     minHeight: "100vh",
     display: "flex!important",
@@ -24,7 +24,7 @@ const pagesStyle = theme => ({
     backgroundPosition: "center center",
     height: "100%",
     [theme.breakpoints.down("sm")]: {
-      minHeight: "fit-content!important"
+      minHeight: "inherit"
     },
     "& footer": {
       position: "absolute",

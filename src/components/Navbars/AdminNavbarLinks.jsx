@@ -26,7 +26,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import adminNavbarLinksStyle from "assets/jss/material-dashboard-pro-react/components/adminNavbarLinksStyle.jsx";
 
 class HeaderLinks extends React.Component {
-  state = {
+  /*state = {
     open: false
   };
   handleClick = () => {
@@ -34,10 +34,10 @@ class HeaderLinks extends React.Component {
   };
   handleClose = () => {
     this.setState({ open: false });
-  };
+  };*/
   render() {
-    const { classes, rtlActive } = this.props;
-    const { open } = this.state;
+    //const { classes, rtlActive } = this.props;
+    /*const { open } = this.state;
     const searchButton =
       classes.top +
       " " +
@@ -56,10 +56,10 @@ class HeaderLinks extends React.Component {
     });
     const managerClasses = classNames({
       [classes.managerClasses]: true
-    });
+    });*/
     return (
-      <div className={wrapper}>
-        <CustomInput
+      <div> {/*className={wrapper}*/}
+        {/*<CustomInput
           rtlActive={rtlActive}
           formControlProps={{
             className: classes.top + " " + classes.search
@@ -227,15 +227,15 @@ class HeaderLinks extends React.Component {
               {rtlActive ? "الملف الشخصي" : "Profile"}
             </span>
           </Hidden>
-        </Button>
+          </Button>*/}
       </div>
     );
   }
 }
 
-HeaderLinks.propTypes = {
+/*HeaderLinks.propTypes = {
   classes: PropTypes.object.isRequired,
   rtlActive: PropTypes.bool
-};
+};*/
 
 export default withStyles(adminNavbarLinksStyle)(HeaderLinks);

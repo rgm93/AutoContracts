@@ -114,7 +114,7 @@ const adminNavbarLinksStyle = theme => ({
   },
   wrapperRTL: {
     [theme.breakpoints.up("md")]: {
-      paddingLeft: "16px"
+      paddingLeft: "146px"
     }
   },
   buttonLinkRTL: {

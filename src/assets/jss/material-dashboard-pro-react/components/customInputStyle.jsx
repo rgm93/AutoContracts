@@ -2,7 +2,6 @@ import {
   primaryColor,
   dangerColor,
   successColor,
-  defaultFont,
   whiteColor,
   grayColor
 } from "assets/jss/material-dashboard-pro-react.jsx";

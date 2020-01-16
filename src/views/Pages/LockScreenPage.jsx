@@ -54,7 +54,7 @@ class LockScreenPage extends React.Component {
               </a>
             </CardAvatar>
             <CardBody profile>
-              <h4 className={classes.cardTitle}>Tania Andrew</h4>
+              <h4 className={classes.cardTitle}>Rubén González</h4>
               <CustomInput
                 labelText="Enter Password"
                 id="company-disabled"

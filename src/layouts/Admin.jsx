@@ -13,14 +13,14 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
-import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
 import routes from "routes.js";
 
 import appStyle from "assets/jss/material-dashboard-pro-react/layouts/adminStyle.jsx";
 
 import image from "assets/img/sidebar-2.jpg";
-import logo from "assets/img/logo-white.svg";
+//import logo from "assets/img/logo-white.svg";
+import logo from "assets/img/scapeshift/sc_original_white.png"
 
 var ps;
 
@@ -142,7 +142,7 @@ class Dashboard extends React.Component {
       <div className={classes.wrapper}>
         <Sidebar
           routes={routes}
-          logoText={"Panel de Usuario"}
+          logoText={"ADA Dashboard"}
           logo={logo}
           image={this.state.image}
           handleDrawerToggle={this.handleDrawerToggle}
@@ -172,7 +172,7 @@ class Dashboard extends React.Component {
               <Switch>{this.getRoutes(routes)}</Switch>
             </div>
           )}
-          {this.getRoute() ? <Footer fluid /> : null}
+          {/*this.getRoute() ? <Footer fluid /> : null*/}
           {/*<FixedPlugin
             handleImageClick={this.handleImageClick}
             handleColorClick={this.handleColorClick}

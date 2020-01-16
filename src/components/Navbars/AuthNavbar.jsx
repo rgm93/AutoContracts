@@ -52,7 +52,7 @@ class AuthNavbar extends React.Component {
     });
     var list = (
       <List className={classes.list}>
-        <ListItem className={classes.listItem}>
+        {/*<ListItem className={classes.listItem}>
           <NavLink to={"/admin/dashboard"} className={classes.navLink}>
             <Dashboard className={classes.listItemIcon} />
             <ListItemText
@@ -76,17 +76,17 @@ class AuthNavbar extends React.Component {
               className={classes.listItemText}
             />
           </NavLink>
-        </ListItem>
+          </ListItem>*/}
         <ListItem className={classes.listItem}>
           <NavLink
-            to={"/auth/register-page"}
+            to={"/auth/signin"}
             className={cx(classes.navLink, {
-              [classes.navLinkActive]: this.activeRoute("/auth/register-page")
+              [classes.navLinkActive]: this.activeRoute("/auth/signin")
             })}
           >
             <PersonAdd className={classes.listItemIcon} />
             <ListItemText
-              primary={"Register"}
+              primary={"Registro"}
               disableTypography={true}
               className={classes.listItemText}
             />
@@ -94,20 +94,20 @@ class AuthNavbar extends React.Component {
         </ListItem>
         <ListItem className={classes.listItem}>
           <NavLink
-            to={"/auth/login-page"}
+            to={"/auth/login"}
             className={cx(classes.navLink, {
-              [classes.navLinkActive]: this.activeRoute("/auth/login-page")
+              [classes.navLinkActive]: this.activeRoute("/auth/login")
             })}
           >
             <Fingerprint className={classes.listItemIcon} />
             <ListItemText
-              primary={"Login"}
+              primary={"Acceso"}
               disableTypography={true}
               className={classes.listItemText}
             />
           </NavLink>
         </ListItem>
-        <ListItem className={classes.listItem}>
+        {/*<ListItem className={classes.listItem}>
           <NavLink
             to={"/auth/lock-screen-page"}
             className={cx(classes.navLink, {
@@ -123,7 +123,7 @@ class AuthNavbar extends React.Component {
               className={classes.listItemText}
             />
           </NavLink>
-        </ListItem>
+          </ListItem>*/}
       </List>
     );
     return (
@@ -139,7 +139,7 @@ class AuthNavbar extends React.Component {
           <Hidden mdUp>
             <div className={classes.flex}>
               <Button href="#" className={classes.title} color="transparent">
-                MD Pro React
+                SCAPESHIFT ADA
               </Button>
             </div>
           </Hidden>

@@ -15,7 +15,7 @@ class MailBox extends React.Component {
     this.setState({ value: index });
   };
   render() {
-    const { classes } = this.props;
+    //const { classes } = this.props;
     return (
       <div>
       </div>
