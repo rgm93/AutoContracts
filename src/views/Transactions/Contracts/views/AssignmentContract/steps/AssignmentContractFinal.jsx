@@ -159,10 +159,11 @@ class AssignmentContractFinal extends React.Component {
           <div style={{display: 'flex'}}>
             {/*<PDFContract data={this.state.form} />*/}
             <div style={{width: '50%'}}>
-              <PDFContractPreview
+              {/*<PDFContractPreview
                 data={this.getData()}
                 html={this.getHTML}
-              />
+              />*/}
+              <PDFContractViewer data={this.getData()} html={this.getHTML} />
             </div>
             
             <div style={{width: '50%'}}>

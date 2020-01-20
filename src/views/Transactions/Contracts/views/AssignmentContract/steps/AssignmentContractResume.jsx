@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import moment from 'moment';
 import AssignmentContractFinal from "./AssignmentContractFinal";
+import CollapsibleList from '../../../components/CollapsibleList/CollapsibleList';
 import '../steps/resume.css'
 moment.locale('es', {
     months: 'Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre'.split('_'),
@@ -53,96 +54,106 @@ class AssignmentContractResume extends React.Component {
         let guarantees = data.form.guaranteesFinance['arrayOfConditionals'].map(g => g);
         return(
             <div className="resume">
-                <h3> 1. Partes y datos del contrato </h3>
-                    <h4>Nombre del Cedente: {data.form.assignor.name}</h4>
+                <CollapsibleList trigger="1. Partes y datos del contrato">
+                    <CollapsibleList trigger="Cedente">
+                        <h5>Nombre del Cedente: {data.form.assignor.name}</h5>
                         <h5>NIF: {data.form.assignor.nif}</h5>
                         <h5>Domicilio social: {data.form.assignor.socialDom}</h5>
-                    <h4>Nombre del Cesionario: {data.form.transferee.name}</h4>
+                    </CollapsibleList>
+                    <CollapsibleList trigger="Cesionario">
+                        <h5>Nombre del Cesionario: {data.form.transferee.name}</h5>
                         <h5>NIF: {data.form.transferee.name}</h5>
                         <h5>Domicilio social: {data.form.transferee.socialDom}</h5>
                         <h5>Contacto a efectos de notificaciones: {data.form.transferee.contactNotify}</h5>
                         <h5>Dirección a efectos de notificaciones: {data.form.transferee.addressNotify}</h5>
                         <h5>Teléfono: {data.form.transferee.phone}</h5>
                         <h5>E-mail: {data.form.transferee.email}</h5>
-                    <h4>Ciudad: {data.form.city}</h4>
-                    <h4>Fecha: {data.form.date}</h4>
-
-                <h3> 2. Datos del Contrato de Financiación y las Garantías </h3>
-                    <h4>Contrato de Financiación</h4>
-                        <h5>Cantidad de la Financiación: {data.form.financeContract.financeAmmount}</h5>
+                    </CollapsibleList>
+                    <h5>Ciudad: {data.form.city}</h5>
+                    <h5>Fecha: {data.form.date}</h5>
+                </CollapsibleList>
+                <CollapsibleList trigger="2. Datos del Contrato de Financiación y las Garantías ">
+                    <CollapsibleList trigger="2.1 Contrato de Financiación">
+                    <h5>Cantidad de la Financiación: {data.form.financeContract.financeAmmount}</h5>
                         <h5>Fecha: {data.form.financeContract.date}</h5>
                         <h5>Deudor(es): {this.gestionarGarantías(data, 'deudores')}</h5>
                         <h5>Agente: {data.form.financeContract.nameAgent}</h5>
                         <h5>Ciudad de firma: {data.form.financeContract.city}</h5>
                         <h5>Notario: {data.form.financeContract.notary}</h5>
                         <h5>Protocolo: {data.form.financeContract.protocol}</h5>
-                        <h5>Cláusula de cesiones</h5>
+                        <CollapsibleList trigger="Cláusula de cesiones">
                             <h6>Número de cláusula: {data.form.financeContract.assignmentClause.numberClause}</h6>
                             <h6>Título de cláusula: {data.form.financeContract.assignmentClause.titleClause}</h6>
-                        <h5>Cláusula de Causas de Vencimiento Anticipado</h5>
-                            <h6>Número de cláusula: {data.form.financeContract.sunsetClause.numberClause}</h6>
+                        </CollapsibleList>
+                        <CollapsibleList trigger="Cláusula de Causas de Vencimiento Anticipado">
+                        <h6>Número de cláusula: {data.form.financeContract.sunsetClause.numberClause}</h6>
                             <h6>Título de cláusula: {data.form.financeContract.sunsetClause.titleClause}</h6>
-                        <h5>Cláusula de notificaciones</h5>
+                        </CollapsibleList>
+                        <CollapsibleList trigger="Cláusula de notificaciones">
                             <h6>Número de cláusula: {data.form.financeContract.notifyClause.numberClause}</h6>
                             <h6>Título de cláusula: {data.form.financeContract.notifyClause.titleClause}</h6>
+                        </CollapsibleList>
                         {
                             primerReq.includes('Si') ? 
-                                <div>
-                                    <h5>Garantía a primer requerimiento</h5>
+                                <CollapsibleList trigger="Garantía a primer requerimiento">
                                         <h6>Número de cláusula: {data.form.financeContract.conditional['Número de Cláusula']}</h6>
                                         <h6>Título de cláusula: {data.form.financeContract.conditional['Título de Cláusula']}</h6>  
-                                </div>
-                            
+                                </CollapsibleList>
                             : null
                         }
-                    <h4>Garantías</h4>
-                        {
+                    </CollapsibleList>
+                    <CollapsibleList trigger="2.2 Garantías">
+                    {
                             guarantees.map((g) => 
                             g['Tipo de Garantía'] === 'Prenda de Acciones' ? (
                                 <div key={g['Protocolo']}>
-                                    <h5>Prenda de Acciones</h5>
-                                    <h6>Sociedad(es) Pignorada(s): {this.gestionarGarantías(g, 'sociedades')}</h6>
-                                    <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
-                                    <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
-                                    <h6>Ciudad de firma: {g['Ciudad']}</h6>
-                                    <h6>Notario: {g['Notario']}</h6>
-                                    <h6>Protocolo: {g['Protocolo']}</h6>
+                                    <CollapsibleList trigger="Prenda de Acciones">
+                                        <h6>Sociedad(es) Pignorada(s): {this.gestionarGarantías(g, 'sociedades')}</h6>
+                                        <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
+                                        <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
+                                        <h6>Ciudad de firma: {g['Ciudad']}</h6>
+                                        <h6>Notario: {g['Notario']}</h6>
+                                        <h6>Protocolo: {g['Protocolo']}</h6>
+                                    </CollapsibleList>
                                 </div>
                             ) : ( g['Tipo de Garantía'] === 'Prenda de Participaciones' ? (
                                 <div key={g['Protocolo']}>
-                                    <h5>Prenda de Participaciones</h5>
-                                    <h6>Sociedad(es) Pignorada(s): {this.gestionarGarantías(g, 'sociedades')}</h6>
-                                    <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
-                                    <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
-                                    <h6>Ciudad de firma: {g['Ciudad']}</h6>
-                                    <h6>Notario: {g['Notario']}</h6>
-                                    <h6>Protocolo: {g['Protocolo']}</h6>
+                                    <CollapsibleList trigger="Prenda de Participaciones">
+                                        <h6>Sociedad(es) Pignorada(s): {this.gestionarGarantías(g, 'sociedades')}</h6>
+                                        <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
+                                        <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
+                                        <h6>Ciudad de firma: {g['Ciudad']}</h6>
+                                        <h6>Notario: {g['Notario']}</h6>
+                                        <h6>Protocolo: {g['Protocolo']}</h6>
+                                    </CollapsibleList>
                                 </div>
                             ) : ( g['Tipo de Garantía'] === 'Prenda de Derechos de Crédito' ? (
                                 <div key={g['Protocolo']}>
-                                    <h5>Prenda de Derechos de Crédito</h5>
-                                    <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
-                                    <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
-                                    <h6>Ciudad de firma: {g['Ciudad']}</h6>
-                                    <h6>Notario: {g['Notario']}</h6>
-                                    <h6>Protocolo: {g['Protocolo']}</h6>
+                                    <CollapsibleList trigger="Prenda de Derechos de Crédito">
+                                        <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
+                                        <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
+                                        <h6>Ciudad de firma: {g['Ciudad']}</h6>
+                                        <h6>Notario: {g['Notario']}</h6>
+                                        <h6>Protocolo: {g['Protocolo']}</h6>
+                                    </CollapsibleList>
                                 </div>
                             ) : (g['Tipo de Garantía'] === 'Hipoteca' ? (
                                 <div key={g['Protocolo']}>
-                                    <h5>Hipoteca</h5>
-                                    <h6>Hipotencante(s): {this.gestionarGarantías(g, 'hipotecantes')} </h6>
-                                    <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
-                                    <h6>Ciudad de firma: {g['Ciudad']}</h6>
-                                    <h6>Notario: {g['Notario']}</h6>
-                                    <h6>Protocolo: {g['Protocolo']}</h6>
+                                    <CollapsibleList trigger="Hipoteca">
+                                        <h6>Hipotencante(s): {this.gestionarGarantías(g, 'hipotecantes')} </h6>
+                                        <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
+                                        <h6>Ciudad de firma: {g['Ciudad']}</h6>
+                                        <h6>Notario: {g['Notario']}</h6>
+                                        <h6>Protocolo: {g['Protocolo']}</h6>
+                                    </CollapsibleList>
                                 </div>
                             ) : null ))))
                         }
-                        
-                    <h4>Detalles de la cesión</h4>
+                    </CollapsibleList>
+                    <CollapsibleList trigger="2.3 Detalles de la cesión">
                         <h5>Total/Parcial: {data.conditional.selectorTP} </h5>
                         <h5>Fecha de Efectividad: {this.getFormatDate(data.form.assignmentDetails.assignmentDate)}</h5>
-                        <h5>Cantidad cedida</h5>
+                        <CollapsibleList trigger="Cantidad Cedida">
                             <h6>Euros: {data.form.assignmentDetails.assignmentAmmount.assignmentPrice}€</h6>
                             <h6>Porcentaje sobre el total del Contrato de Financiación: {data.form.assignmentDetails.assignmentAmmount.percentage.toLocaleString()}%</h6>
                             {
@@ -153,11 +164,16 @@ class AssignmentContractResume extends React.Component {
                                 </div>
                                 : null
                             }
+                        </CollapsibleList>
+                            
                             
                         <h5>Precio de la Cesión: {data.form.assignmentDetails.assignmentAmmount.assignmentPrice.price}</h5>
-                        <h5>Detalles del pago</h5>
+                        <CollapsibleList trigger="Detalles del pago">
                             <h6>Cuenta bancaria: {data.form.assignmentDetails.assignmentAmmount.payDetails.bankAccount}</h6>
                             <h6>Hora límite de pago: {limitTime}</h6>
+                        </CollapsibleList>
+                    </CollapsibleList>
+                </CollapsibleList>
             </div>
         );
     }
