@@ -72,7 +72,6 @@ class Sidebar extends React.Component {
         return null;
       }
       if (prop.collapse) {
-        console.log("u entra")
         initialState = {
           [prop.state]: this.getCollapseInitialState(prop.views),
           ...this.getCollapseStates(prop.views),

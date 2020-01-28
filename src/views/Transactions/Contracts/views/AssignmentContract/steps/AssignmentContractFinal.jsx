@@ -4,26 +4,25 @@ import React from "react";
 
 //import Form from "react-jsonschema-form";
 import "../contract/AssignmentContract.css";
-import uischema from "../json/uiSchema.json";
-import formdata from "../json/formData.json";
-import PDFContract from "../../PDFContract";
-import ReactS3 from "react-s3";
-import AssignmentContractResume from "./AssignmentContractResume";
+//import uischema from "../json/uiSchema.json";
+//import formdata from "../json/formData.json";
+//import ReactS3 from "react-s3";
+import AssignmentContractResum from "./AssignmentContractResume";
 import SCSHID from "../../../components/SCSHID/SCSHID";
-import PDFEditor from "../../PDFEditor";
+//import PDFEditor from "../../PDFEditor";
+import PDFEditor5 from "../../PDFEditor5"
 import mockdata from "../../AssignmentContract/json/mockup.json";
-import { PDFDownloadLink } from "@react-pdf/renderer";
 
-import PDFContractPreview from "../../PDFContractPreview";
+//import PDFContractPreview from "../../PDFContractPreview";
 import { Tab, Row, Col, Nav } from 'react-bootstrap'
 
-import { BugReport, Code, Cloud } from "@material-ui/icons"
+//import { BugReport, Code, Cloud } from "@material-ui/icons"
 
 
 import { contract } from "../mockups/mockupContract";
 import {
-  sendPreviewContract,
-  getPreviewContract
+  sendPreviewContract
+  /*getPreviewContract*/
 } from "../../../functions/functionsContract.js";
 
 import Select from "@material-ui/core/Select";
@@ -41,6 +40,7 @@ class AssignmentContractFinal extends React.Component {
       isEditing: false,
       isDrafting: false,
       isSigning: false,
+      isFinal: false,
       textPDF: "",
       agreeOnBoth: false,
       selectSend: "abogado_cedente",
@@ -50,19 +50,18 @@ class AssignmentContractFinal extends React.Component {
     };
   }
 
-  
-
   handleChange = (event, newValue) => {
     this.setState({valueTabs: newValue});
   };
 
   componentDidMount() {
-    this.setState({ form: mockdata, isResuming: true });
+    this.setState({ form: mockdata, isResuming: true }); //mockdata
   }
 
   scrollUp = () => {
-    document.getElementsByClassName("Dashboard-mainPanel-2")[0].scrollTo(0, 0);
-  };
+    var sc = document.getElementsByClassName('Dashboard-mainPanel-2')[0];
+    sc !== undefined ? sc.scrollTo(0,0) : window.scrollTo(0,0);
+  }
 
   handleHTML = html => this.setState({ html });
 
@@ -76,6 +75,7 @@ class AssignmentContractFinal extends React.Component {
       case "preview":
         this.setState({ isDrafting: true, isEditing: false });
         break;
+      default: break;
     }
   };
   next = type => {
@@ -89,7 +89,9 @@ class AssignmentContractFinal extends React.Component {
         this.setState({ isSigning: true, isDrafting: false });
         break;
       case "contract":
+        this.setState({ isSigning: false, isFinal: true });
         break;
+      default: break;
 
     }
     this.props.nextStep();
@@ -108,6 +110,7 @@ class AssignmentContractFinal extends React.Component {
       case "sign":
         this.setState({ isSigning: false, isDrafting: true });
         break;
+      default: break;
     }
     this.props.prevStep();
   };
@@ -117,8 +120,71 @@ class AssignmentContractFinal extends React.Component {
   sendData = () => this.state.html !== "" ? ["html", this.state.html] : ["form", this.state.form]
   getHTML = (data) => this.setState({html: data})
 
+
+  setSign = (sign) => {
+
+    //console.log('z', this.getData())
+    //console.log('sign', sign)
+
+    //console.log('dom', doc)
+    //this.setState({html: doc})
+    /*var dc = new Promise(function(resolve, reject) {
+      resolve(doc);
+    }.bind(this)).then((docdom) => {
+      this.setState({html: docdom })
+    });*/
+
+
+    /*var data = this.getData();
+    data = data.replace(/<img id="firma1" src=([\s\S]*) style="width: 100px; height: 100px" \/>/gi, `<img id="firma1" src=${sign} style="width: 100px; height: 100px" />`);
+    //console.log('a', a)
+    //this.sendData(a)
+    this.setState({html: data});
+    this.next("contract")*/
+    //document.createElement('html').getElementById
+
+    /*var doc = document.createElement('html');
+    doc.innerHTML = this.getData().trim();
+    console.log('firma1', doc.getElementsByTagName("firma1"))
+    doc.getElementsByTagName("firma1")[0].setAttribute("src", sign);
+    var docFinal = new XMLSerializer().serializeToString(doc.getRootNode())
+    console.log('llego', docFinal)
+    this.setState({html: docFinal})*/
+    
+    /*var dc = new Promise(function(resolve, reject) {
+      var doc = document.createElement('html');
+      doc.innerHTML = this.getData().trim();
+      resolve(doc);
+    }.bind(this)).then(function(docdom) {
+      return new Promise(function(resolve, reject) {
+        docdom.getElementsByTagName
+        docdom.getElementsByTagName("firma1").src = sign;
+        resolve(docdom)
+      }).then(function(finalDoc) {
+        var docFinal = new XMLSerializer().serializeToString(finalDoc.getRootNode())
+        console.log('llego', docFinal)
+        return docFinal
+    })});
+
+    if (dc !== '') { 
+      console.log('final', dc)
+      this.setState({html: dc}) 
+    }*/
+    
+    /*//console.log('llego', doc)
+    console.log('firma1', doc.getElementsByTagName("firma1"))
+    console.log('sign', sign)
+    doc.getElementsByTagName("firma1")[0].setAttribute("src", sign.toString());
+    var docFinal = this.xml2string(doc.getRootNode())
+    //var docFinal = doc.getElementById('div').innerHTML;
+    console.log('llego', docFinal)
+    this.setState({html: docFinal})*/
+  }
+
   render() {
-    const {valueTabs, html } = this.state
+    const { /*valueTabs,*/ html, form } = this.state
+    console.log('formsFinal', form)
+    console.log('html', html)
     return (
       <div>
         {this.state.isResuming ? (
@@ -128,7 +194,7 @@ class AssignmentContractFinal extends React.Component {
               Por favor, compruebe que todos los datos están correctos antes de
               generar el contrato{" "}
             </h3>
-            <AssignmentContractResume data={this.state.form} />
+            <AssignmentContractResum data={this.state.form} />
             <div className="buttons">
               <button
                 className="buttonStepsBack"
@@ -147,7 +213,7 @@ class AssignmentContractFinal extends React.Component {
         ) : this.state.isEditing ? (
           <div>
             <div className="pdf"></div>
-            <PDFEditor
+            <PDFEditor5
               data={this.sendData()}
               changeView={this.changeView}
               handleHTML={this.handleHTML}
@@ -158,7 +224,7 @@ class AssignmentContractFinal extends React.Component {
           <div>
           <div style={{display: 'flex'}}>
             {/*<PDFContract data={this.state.form} />*/}
-            <div style={{width: '50%'}}>
+            <div style={{width: '50%',  marginTop: "4%"}}>
               {/*<PDFContractPreview
                 data={this.getData()}
                 html={this.getHTML}
@@ -284,7 +350,11 @@ class AssignmentContractFinal extends React.Component {
           
         ) : this.state.isSigning ? (
           <div>
-            <PDFContractViewer data={html} />
+            <SCSHID
+                  next={() => this.next("contract")}
+                  data={this.getData()}
+                  handleHTML={this.handleHTML}
+            />
             {
                 /*}: !this.state.isSigning ? (
                 <SCSHID
@@ -324,6 +394,10 @@ class AssignmentContractFinal extends React.Component {
             {/*<button 
                      className="buttonGenerateEditPDF" 
                   onClick={this.editContract}>Editar contrato</button>*/}
+          </div>
+        ) : this.state.isFinal ? (
+          <div style={{width: "100%", marginTop: "5%"}}>
+            <PDFContractViewer data={this.getData()} height="450px" />
           </div>
         ) : null }
       </div>

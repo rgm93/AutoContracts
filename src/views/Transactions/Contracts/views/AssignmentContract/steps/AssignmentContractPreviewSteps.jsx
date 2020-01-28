@@ -1,10 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 
 import Form from "react-jsonschema-form";
 import "../contract/AssignmentContract.css";
 import uischema from "../json/uiSchema.json"
-import formdata from '../json/formData.json';
+//import formdata from '../json/formData.json';
 
 class AssignmentContractPreviewSteps extends React.Component {
    constructor(props) {

@@ -22,7 +22,8 @@ import CardBody from "components/Card/CardBody.jsx";
 import SCLogo from "assets/img/scapeshift/sc1.jpeg";
 
 import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
-import axios from "axios";
+//import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 import {
   verifyEmail,
@@ -117,8 +118,9 @@ class LoginPage extends React.Component {
     switch(index) {
       case 0: controls = [this.state.controlForm.emailForm, this.state.controlForm.passwordForm]; break;
       case 1: controls = [this.state.controlForm.masterPasswordForm]; break;
+      default: break;
     }
-    let result = controls.find(value => value == 'error')
+    let result = controls.find(value => value === 'error')
     let value = (result !== 'error') ? true : false
     this.handleButtonSteps(index, value)
   }  
@@ -127,6 +129,7 @@ class LoginPage extends React.Component {
     switch(index) {
       case 0: this.setState({ buttonsSteps: {...this.state.buttonsSteps, buttonForm1: value } }); break;
       case 1: this.setState({ buttonsSteps: {...this.state.buttonsSteps, buttonForm2: value } }); break;
+      default: break;
     }
   }
 
@@ -147,7 +150,7 @@ class LoginPage extends React.Component {
       this.nextStep()
   }
   checkMasterPassword = () => {
-    const body = JSON.stringify({
+    /*const body = JSON.stringify({
       "masterPassword": this.state.masterPassword
     })
     axios.get('http://172.17.102.25:8000/api/v1/users/loginMaster/', body, {
@@ -158,7 +161,7 @@ class LoginPage extends React.Component {
       .then((response) => {
         console.log(response.data)
         // Redirigir a Dashboard
-    })
+    })*/
   }
 
   nextStep = () => this.setState({stepForm: this.state.stepForm + 1})
@@ -183,7 +186,7 @@ class LoginPage extends React.Component {
                 <GridContainer justify="center">
                   <GridItem xs={12} sm={6} md={6}>
                     {
-                      stepForm == 0 ? (
+                      stepForm === 0 ? (
                         <form className={classes.form}>
                           <CustomInput
                             success={this.state.controlForm.emailForm === "success"}
@@ -247,7 +250,7 @@ class LoginPage extends React.Component {
                             </Button>
                           </div>
                         </form>
-                      ) : stepForm == 1 ? (
+                      ) : stepForm === 1 ? (
                         <form className={classes.form}>
                           <CustomInput
                             success={this.state.controlForm.masterPasswordForm === "success"}
@@ -275,9 +278,11 @@ class LoginPage extends React.Component {
                             }}
                           />
                           <div className={classes.center}>
+                          <NavLink to={"/admin/newTransaction"}>
                             <Button round color="secondary" disabled={!this.state.buttonsSteps.buttonForm2} onClick={this.checkMasterPassword()}>
                               Verificar
                             </Button>
+                          </NavLink>
                           </div>
                         </form>
                       ) : null

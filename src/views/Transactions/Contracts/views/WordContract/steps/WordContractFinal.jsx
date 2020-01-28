@@ -4,25 +4,23 @@ import React from "react";
 
 //import Form from "react-jsonschema-form";
 import "../contract/WordContract.css";
-import uischema from "../../AssignmentContract/json/uiSchema.json";
-import formdata from "../../AssignmentContract/json/formData.json";
-import PDFContract from "../../PDFContract";
-import ReactS3 from "react-s3";
+//import uischema from "../../AssignmentContract/json/uiSchema.json";
+//import formdata from "../../AssignmentContract/json/formData.json";
+//import ReactS3 from "react-s3";
 import SCSHID from "../../../components/SCSHID/SCSHID";
 import PDFEditor from "../../PDFEditor";
 import mockdata from "../../AssignmentContract/json/mockup.json";
-import { PDFDownloadLink } from "@react-pdf/renderer";
 
-import PDFContractPreview from "../../PDFContractPreview";
+import PDFContractViewer from "../../../components/PDFContractViewer/PDFContractViewer"
 import { Tab, Row, Col, Nav } from 'react-bootstrap'
 
-import { BugReport, Code, Cloud } from "@material-ui/icons"
+//import { BugReport, Code, Cloud } from "@material-ui/icons"
 
 
-import { contract } from "../../AssignmentContract/mockups/mockupContract";
+//import { contract } from "../../AssignmentContract/mockups/mockupContract";
 import {
-  sendPreviewContract,
-  getPreviewContract
+  sendPreviewContract
+  /*getPreviewContract*/
 } from "../../../functions/functionsContract.js";
 
 import Select from "@material-ui/core/Select";
@@ -30,7 +28,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import TasksList from "../../../components/TasksList/TasksList"
 
 var mammoth = require("mammoth");
-let doc = '';
+//let doc = '';
 
 class AssignmentContractFinal extends React.Component {
   constructor(props) {
@@ -62,8 +60,9 @@ class AssignmentContractFinal extends React.Component {
   }
 
   scrollUp = () => {
-    document.getElementsByClassName("Dashboard-mainPanel-2")[0].scrollTo(0, 0);
-  };
+    var sc = document.getElementsByClassName('Dashboard-mainPanel-2')[0];
+    sc !== undefined ? sc.scrollTo(0,0) : window.scrollTo(0,0);
+  }
 
   handleHTML = html => this.setState({ html });
 
@@ -77,6 +76,7 @@ class AssignmentContractFinal extends React.Component {
       case "preview":
         this.setState({ isDrafting: true, isEditing: false });
         break;
+      default: break;
     }
   };
   next = type => {
@@ -91,6 +91,7 @@ class AssignmentContractFinal extends React.Component {
         break;
       case "contract":
         break;
+      default: break;
 
     }
     this.props.nextStep();
@@ -109,6 +110,7 @@ class AssignmentContractFinal extends React.Component {
       case "sign":
         this.setState({ isSigning: false, isDrafting: true });
         break;
+      default: break;
     }
     this.props.prevStep();
   };
@@ -144,7 +146,7 @@ class AssignmentContractFinal extends React.Component {
   
 
   render() {
-    const value = this.state.valueTabs
+    //const value = this.state.valueTabs
     return (
       <div>
         {this.state.isResuming ? (
@@ -156,7 +158,7 @@ class AssignmentContractFinal extends React.Component {
             </label>
             { this.state.html !== '' ? (
               <div>
-                <PDFContractPreview
+                <PDFContractViewer
                   data={this.getData()}
                 />
                 <button onClick={this.handleUploadDocument} className="buttons">Importar</button>
@@ -178,8 +180,8 @@ class AssignmentContractFinal extends React.Component {
           <div>
           <div style={{display: 'flex'}}>
             {/*<PDFContract data={this.state.form} />*/}
-            <div style={{width: '50%'}}>
-              <PDFContractPreview
+            <div style={{width: '50%', marginTop: "4%"}}>
+              <PDFContractViewer
                 data={this.getData()}
               />
             </div>

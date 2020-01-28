@@ -42,16 +42,17 @@ export default class PDFEditor extends Component {
 					<CKEditor
                         data={this.state.data}
                         config={{
+							extraAllowedContent: 'div(*)',
+							allowedContent: true,
                             toolbar: [
                                 [ 'Bold', 'Italic', 'Strike', 'SpecialChar', '-'],
                                 [ 'Cut', 'Copy', 'Undo', 'Redo', 'Anchor' ],
-                                [ 'Styles', 'Format', 'ColorButton', 'ColorDialog'],
-								[ 'NumberedList', 'BulletedList', '-', 'Indent', 'Outdent', 'Blockquote'],
-								[ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-                                [ 'Table', 'HorizontalRule'],
-                                [ 'Source', 'Maximize', 'Print', 'PageBreak']
+                                [ 'Styles', 'Format', 'ColorButton', 'ColorDialog','Blockquote'],
+								[ 'NumberedList', 'BulletedList', 'Indent', 'Outdent','JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                                [ 'Table'],
+                                [ 'Source', 'Maximize' ]
 							],
-							extraPlugins: 'liststyle, justify, indent, indentblock, print, pagebreak',
+							extraPlugins: 'fakeobjects, pagebreak, liststyle, justify, indent, indentblock',
                             width: 'auto',
                             height: '25em'
                         }}

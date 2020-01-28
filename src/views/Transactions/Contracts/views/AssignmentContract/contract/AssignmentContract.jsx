@@ -3,7 +3,6 @@ import React, { Component } from "react";
 
 import '../steps/multisteps.css';
 //import { steps } from 'views/Transactions/Contracts/AssignmentContract/steps/steps';
-//import MultiStep from 'react-multistep';
 import AssignmentContractSteps from '../steps/AssignmentContractSteps';
 import AssignmentContractPreviewSteps from '../steps/AssignmentContractPreviewSteps';
 import contract1 from "../json/contract.json";
@@ -40,7 +39,8 @@ class AssignmentContract extends Component {
    }
 
    scrollUp = () => {
-      document.getElementsByClassName('Dashboard-mainPanel-2 ')[0].scrollTo(0,0)
+      var sc = document.getElementsByClassName('Dashboard-mainPanel-2')[0];
+      sc !== undefined ? sc.scrollTo(0,0) : window.scrollTo(0,0);
    }
 
    nextFormStep = () => {
@@ -65,6 +65,7 @@ class AssignmentContract extends Component {
    }
 
    handleChange = (form) => {
+      console.log('f', form)
       if(!this.state.forms.includes(form))
       {
          this.setState({forms: [...this.state.forms, form]})
@@ -99,7 +100,9 @@ class AssignmentContract extends Component {
 
    render() {
       const step = this.state.step - 1
-      const { stepForm, previewStep, previewForm } = this.state
+      const { previewForm, forms, stepForm, previewStep } = this.state
+      //console.log('previewForm', previewForm)
+      //console.log('forms', forms)
       
       return (
          <div className='container'>
@@ -130,10 +133,11 @@ class AssignmentContract extends Component {
                            
                         ) : (
                            <AssignmentContractFinal
-                           forms={this.state.forms}
-                           nextStep={this.nextStep} 
-                           prevStep={this.state.step !== 0 ? this.prevStep : null}
-                           step={step}
+                              previewForm={previewForm}
+                              forms={forms}
+                              nextStep={this.nextStep} 
+                              prevStep={this.state.step !== 0 ? this.prevStep : null}
+                              step={step}
                            /> 
                         )
                      } 

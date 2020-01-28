@@ -11,7 +11,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
-import Footer from "components/Footer/Footer.jsx";
+//import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 
 import routes from "routes.js";

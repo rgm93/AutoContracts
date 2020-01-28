@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import Notiflix from "notiflix-react";
 import SvgLines from 'react-mt-svg-lines';
 
 export default class Sucess extends Component {

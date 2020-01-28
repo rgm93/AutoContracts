@@ -31,7 +31,7 @@ export default class TodoListItem extends React.Component {
     }
 
     renderTask () {
-        const { task, isCompleted } = this.props;
+        const { task /*, isCompleted*/ } = this.props;
         const taskStyle = {
             cursor: "pointer",
             fontSize: "medium",

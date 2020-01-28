@@ -115,7 +115,7 @@ export const getPreviewContract = (id) => {
  export const setMnemonicPhrase = () => {
    var code = new Mnemonic(Mnemonic.Words.SPANISH);
    var codeString = code.toString()
-   var xpriv = code.toHDPrivateKey()
+   //var xpriv = code.toHDPrivateKey()
 
    /*let mnemonic = '' 
 
@@ -155,7 +155,7 @@ export const getPreviewContract = (id) => {
       }
    }).then((response) => {
       console.log('estado', response.data.mnemonic)
-      result = this.state.mnemonicEncrypted == new Mnemonic(this.state.mnemonicPhrase).toHDPrivateKey().xprivkey
+      result = this.state.mnemonicEncrypted === new Mnemonic(this.state.mnemonicPhrase).toHDPrivateKey().xprivkey
    }).catch((error) => {
       console.log(error.response.data.error)
       alert(error.response.data.error)

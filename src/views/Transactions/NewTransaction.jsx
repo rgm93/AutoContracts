@@ -36,7 +36,7 @@ class NewTransaction extends React.Component {
                 <Card pricing>
                   <CardBody pricing>
                     <h6 className={classes.cardCategory}>CONTRATO DE CESIÓN</h6>
-                    <h6 style={{marginTop: 30}} />
+                    {/*<h6 style={{marginTop: 30}}></h6>*/}
                     <div className={classes.icon}>
                       <Icon>assignment</Icon>
                     </div>
@@ -48,7 +48,7 @@ class NewTransaction extends React.Component {
                     <p className={classes.cardDescription}>
                       Gestiona y realiza un contrato de cesión
                     </p>
-                    <h6 style={{marginTop: 30}} />
+                     {/*<h6 style={{marginTop: 30}}></h6>*/}
                     <NavLink
                       to={"/admin/assignmentContract"}
                     >
@@ -61,7 +61,7 @@ class NewTransaction extends React.Component {
                 <Card pricing>
                   <CardBody pricing>
                     <h6 className={classes.cardCategory}>CONTRATO PERSONALIZADO</h6>
-                    <h6 style={{marginTop: 30}} />
+                     {/*<h6 style={{marginTop: 30}}></h6>*/}
                     <div className={classes.icon}>
                       <Icon>assignment</Icon>
                     </div>
@@ -73,7 +73,7 @@ class NewTransaction extends React.Component {
                     <p className={classes.cardDescription}>
                       Sube y gestiona un contrato desde fichero Word
                     </p>
-                    <h6 style={{marginTop: 30}} />
+                     {/*<h6 style={{marginTop: 30}}></h6>*/}
                     <NavLink
                       to={"/admin/wordContract"}
                     >

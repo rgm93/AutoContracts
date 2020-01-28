@@ -3,8 +3,7 @@ import React, { Component } from "react";
 
 import '../steps/multisteps.css';
 //import { steps } from 'views/Transactions/Contracts/AssignmentContract/steps/steps';
-//import MultiStep from 'react-multistep';
-import AssignmentContractSteps from '../../AssignmentContract/steps/AssignmentContractSteps';
+//import AssignmentContractSteps from '../../AssignmentContract/steps/AssignmentContractSteps';
 import AssignmentContractPreviewSteps from '../../AssignmentContract/steps/AssignmentContractPreviewSteps';
 import contract3 from "../../AssignmentContract/json/contract3.json";
 import WordContractFinal from "../../WordContract/steps/WordContractFinal";
@@ -32,7 +31,8 @@ class WordContract extends Component {
    }
 
    scrollUp = () => {
-      document.getElementsByClassName('Dashboard-mainPanel-2 ')[0].scrollTo(0,0)
+      var sc = document.getElementsByClassName('Dashboard-mainPanel-2')[0];
+      sc !== undefined ? sc.scrollTo(0,0) : window.scrollTo(0,0);
    }
 
    nextStep = () => {  
@@ -42,7 +42,7 @@ class WordContract extends Component {
 
    prevStep = () => {
       this.setState({ step: this.state.step - 1 })
-      const stepMinus = this.state.step - 1;
+      //const stepMinus = this.state.step - 1;
    }
 
    handleChange = (form) => {
@@ -82,7 +82,7 @@ class WordContract extends Component {
 
    render() {
       const step = this.state.step - 1
-      const { previewStep, previewForm } = this.state
+      const { previewStep/*, previewForm*/ } = this.state
       console.log('step', step)
       return (
          <div className='container'>

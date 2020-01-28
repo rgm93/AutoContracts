@@ -1,21 +1,21 @@
-import Calendar from "views/Calendar/Calendar.jsx";
-import Dashboard from "views/Dashboard/Dashboard.jsx";
+//import Calendar from "views/Calendar/Calendar.jsx";
+//import Dashboard from "views/Dashboard/Dashboard.jsx";
 import NewTransaction from "views/Transactions/NewTransaction.jsx";
 
-import DashboardIcon from "@material-ui/icons/Dashboard";
+//import DashboardIcon from "@material-ui/icons/Dashboard";
 import Lock from "@material-ui/icons/Lock"
-import DateRange from "@material-ui/icons/DateRange";
+//import DateRange from "@material-ui/icons/DateRange";
 import AddIcon from "@material-ui/icons/AddCircle";
 import ContractsIcon from "@material-ui/icons/FileCopy";
-import MailIcon from "@material-ui/icons/Drafts";
+//import MailIcon from "@material-ui/icons/Drafts";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 
 import WordContract from "./views/Transactions/Contracts/views/WordContract/contract/WordContract"
 import AssignmentContract from "./views/Transactions/Contracts/views/AssignmentContract/contract/AssignmentContract";
 import MyTransactions from "./views/Transactions/MyTransactions";
-import MailBox from "./views/MailBox/MailBox";
+//import MailBox from "./views/MailBox/MailBox";
 import LoginPage from "./views/Pages/LoginPage.jsx";
-import RegisterPage from "views/Pages/Register/RegisterPage.jsx";
+//import RegisterPage from "views/Pages/Register/RegisterPage.jsx";
 
 var dashRoutes = [
   /*{
@@ -50,14 +50,14 @@ var dashRoutes = [
       }
     ]
   },
-  {
+  /*{
     path: "/calendar",
     name: "Próximos eventos",
     icon: DateRange,
     component: Calendar,
     layout: "/admin",
     invisible: false
-  },
+  },*/
   /*{
     path: "/mailbox",
     name: "Buzón de Entrada",
@@ -87,13 +87,13 @@ var dashRoutes = [
     component: LoginPage,
     layout: "/auth"
   },
-  {
+  /*{
     path: "/signin",
     name: "SCAPESHIFT ADA",
     invisible: true,
     component: RegisterPage,
     layout: "/auth"
-  },
+  },*/
   {
     path: "/login",
     name: "Cerrar Sesión",
