@@ -15,7 +15,7 @@ import AssignmentContract from "./views/Transactions/Contracts/views/AssignmentC
 import MyTransactions from "./views/Transactions/MyTransactions";
 //import MailBox from "./views/MailBox/MailBox";
 import LoginPage from "./views/Pages/LoginPage.jsx";
-import RegisterPage from "views/Pages/Register/RegisterPage.jsx";
+//import RegisterPage from "views/Pages/Register/RegisterPage.jsx";
 
 var dashRoutes = [
   /*{
@@ -87,13 +87,13 @@ var dashRoutes = [
     component: LoginPage,
     layout: "/auth"
   },
-  {
+  /*{
     path: "/signin",
     name: "SCAPESHIFT ADA",
     invisible: true,
     component: RegisterPage,
     layout: "/auth"
-  },
+  },*/
   {
     path: "/login",
     name: "Cerrar Sesión",

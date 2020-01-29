@@ -16,7 +16,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 // @material-ui/icons
 //import Dashboard from "@material-ui/icons/Dashboard";
 import Menu from "@material-ui/icons/Menu";
-import PersonAdd from "@material-ui/icons/PersonAdd";
+//import PersonAdd from "@material-ui/icons/PersonAdd";
 import Fingerprint from "@material-ui/icons/Fingerprint";
 //import LockOpen from "@material-ui/icons/LockOpen";
 //import MonetizationOn from "@material-ui/icons/MonetizationOn";
@@ -76,7 +76,7 @@ class AuthNavbar extends React.Component {
               className={classes.listItemText}
             />
           </NavLink>
-          </ListItem>*/}
+          </ListItem>
         <ListItem className={classes.listItem}>
           <NavLink
             to={"/auth/signin"}
@@ -91,7 +91,7 @@ class AuthNavbar extends React.Component {
               className={classes.listItemText}
             />
           </NavLink>
-        </ListItem>
+        </ListItem>*/}
         <ListItem className={classes.listItem}>
           <NavLink
             to={"/auth/login"}
