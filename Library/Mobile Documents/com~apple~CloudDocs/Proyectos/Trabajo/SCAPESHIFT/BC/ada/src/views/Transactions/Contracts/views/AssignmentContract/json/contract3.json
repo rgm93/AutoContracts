@@ -1,0 +1,80 @@
+{
+   "title": "",
+   "type": "object",
+   "properties": {
+      "form": {
+         "title": "Entidades a intervenir en la operación",
+         "type": "object",
+         "required": [
+            "assignor",
+            "transferee"
+         ],
+         "properties": {
+            "assignor": {
+               "type": "object",
+               "title": "Cedente",
+               "required": [
+                  "email"
+               ],
+               "properties": {
+                  "email": {
+                     "type": "string",
+                     "format": "email",
+                     "minLength": 5,
+                     "maxLength": 50,
+                     "title": "Correo electrónico"
+                  }
+               }
+            },
+            "assignorLawyer": {
+               "type": "object",
+               "title": "Despacho de Abogado del Cedente",
+               "required": [
+                  "email"
+               ],
+               "properties": {
+                  "email": {
+                     "type": "string",
+                     "format": "email",
+                     "minLength": 5,
+                     "maxLength": 50,
+                     "title": "Correo electrónico"
+                  }
+               }
+            },
+            "transferee": {
+               "type": "object",
+               "title": "Cesionario",
+               "required": [
+                  "email"
+               ],
+               "properties": {
+                  "email": {
+                     "type": "string",
+                     "format": "email",
+                     "minLength": 5,
+                     "maxLength": 50,
+                     "title": "Correo electrónico"
+                  }
+               }
+            },
+            "transfereeLawyer": {
+               "type": "object",
+               "title": "Despacho de Abogado del Cesionario",
+               "required": [
+                  "email"
+               ],
+               "properties": {
+                  "email": {
+                     "type": "string",
+                     "format": "email",
+                     "minLength": 5,
+                     "maxLength": 50,
+                     "title": "Correo electrónico"
+                  }
+               }
+            }
+         }
+      }
+   }
+}

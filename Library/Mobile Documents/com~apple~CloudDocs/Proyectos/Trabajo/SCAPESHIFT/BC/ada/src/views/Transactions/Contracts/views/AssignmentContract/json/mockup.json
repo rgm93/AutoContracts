@@ -1,0 +1,170 @@
+{
+    "form": {
+      "assignor": {
+        "name": "Goldman Sachs International, S.A.",
+        "nif": "A73920938",
+        "socialDom": "Paseo de la Castellana 216, 28046  - Madrid, Madrid, España"
+      },
+      "transferee": {
+        "name": "JP Morgan España, S.A.",
+        "nif": "A28253037",
+        "socialDom": "Paseo De La Castellana, Nª. 31  28046  - Madrid",
+        "contactNotify": "Rodrigo Pérez López",
+        "addressNotify": "Paseo De La Castellana, Nª. 33  28046  - Madrid, Madrid, España",
+        "phone": 34913456789,
+        "email": "Rodrigo.lopez@jpmorgan.com"
+      },
+      "city": "Madrid",
+      "date": "2019-08-23",
+      "financeContract": {
+        "date": "2019-07-07",
+        "debtor": {
+          "arrayOfConditionalsObject": [
+            {
+              "Deudor": "El Estudio de Antonio, S.L."
+            },
+            {
+              "Deudor": "Marcos López e Hijos, S.L."
+            }
+          ]
+        },
+        "financeAmmount": 589987000,
+        "nameAgent": "Agensynd, S.L.",
+        "city": "Madrid",
+        "notary": "Andrés Domíngez Nafría",
+        "protocol": 35,
+        "assignmentClause": {
+          "numberClause": 23,
+          "titleClause": "Cesiones"
+        },
+        "sunsetClause": {
+          "numberClause": 21,
+          "titleClause": "Causas de Vencimiento Anticipado"
+        },
+        "notifyClause": {
+          "numberClause": 24,
+          "titleClause": "Notificaciones entre las Partes"
+        },
+        "conditional": {
+          "Número de Cláusula": 26.8,
+          "Título de Cláusula": "Garantía a primer requerimiento",
+          "¿Se regula una garantía a primer requerimiento?": "Si"
+        }
+      },
+      "guaranteesFinance": {
+        "arrayOfConditionals": [
+          {
+            "Ciudad": "Madrid",
+            "Fecha": "2019-07-09",
+            "Notario": "Andrés Domínguez Nafría",
+            "Pignorante": {
+              "arrayOfConditionals2": [
+                {
+                  "Pignorante": "Grupo Antonio, S.L."
+                },
+                {
+                  "Pignorante": "Simón Pérez, S.A."
+                }
+              ]
+            },
+            "Protocolo": 1234,
+            "Sociedades Pignorada": {
+              "arrayOfConditionals2": [
+                {
+                  "Sociedad Pignorada": "Simón Pérez, S.A."
+                },
+                {
+                  "Sociedad Pignorada": "Investec 2000, S.A."
+                }
+              ]
+            },
+            "Tipo de Garantía": "Prenda de Acciones"
+          },
+          {
+            "Ciudad": "Madrid",
+            "Fecha": "2019-07-09",
+            "Notario": "Andrés Domínguez Nafría",
+            "Pignorante": {
+              "arrayOfConditionals2": [
+                {
+                  "Pignorante": "Grupo Antonio, S.L."
+                }
+              ]
+            },
+            "Protocolo": 1235,
+            "Sociedades Pignorada": {
+              "arrayOfConditionals2": [
+                {
+                  "Sociedad Pignorada": "La Huerta de Marco, S.L."
+                },
+                {
+                  "Sociedad Pignorada": "Paco Pérez, S.L."
+                },
+                {
+                  "Sociedad Pignorada": "Muebles Enrique, S.L."
+                }
+              ]
+            },
+            "Tipo de Garantía": "Prenda de Participaciones"
+          },
+          {
+            "Ciudad": "Madrid",
+            "Fecha": "2019-07-09",
+            "Notario": "Andrés Domínguez Nafría",
+            "Pignorante": {
+              "arrayOfConditionals2": [
+                {
+                  "Pignorante": "El Estudio de Antonio, S.L."
+                },
+                {
+                  "Pignorante": "Marcos López e Hijos, S.L."
+                }
+              ]
+            },
+            "Protocolo": 1236,
+            "Tipo de Garantía": "Prenda de Derechos de Crédito"
+          },
+          {
+            "Ciudad": "Madrid",
+            "Fecha": "2019-07-09",
+            "Notario": "Andrés Domínguez Nafría",
+            "Hipotecante": {
+              "arrayOfConditionals2": [
+                {
+                  "Hipotecante": "El Estudio de Antonio, S.L."
+                },
+                {
+                  "Hipotecante": "Marcos López e Hijos, S.L."
+                }
+              ]
+            },
+            "Protocolo": 1237,
+            "Tipo de Garantía": "Hipoteca"
+          }
+        ]
+      },
+      "assignmentDetails": {
+        "assignmentDate": "2019-08-22",
+        "assignmentAmmount": {
+          "currency": 235654763.89,
+          "percentage": 26.45,
+          "selectorTP": {
+            "ammount": 234454765.32,
+            "percentage": 25.45
+          },
+          "assignmentPrice": 47130952.67,
+          "payDetails": {
+            "bankAccount": "ES2123452678897678930985",
+            "limitHour": {
+              "hour": 11,
+              "minutes": 30
+            }
+          }
+        }
+      }
+    },
+  "conditional": {
+    "selectorTP": "Parcial",
+    "¿Se regula una garantía a primer requerimiento?": "Si"
+  }
+}
