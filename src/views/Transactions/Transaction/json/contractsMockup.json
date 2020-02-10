@@ -1,0 +1,31 @@
+{
+    "contract": {
+        "id": 0,
+        "name": "Contrato 1",
+        "type": "Cesión",
+        "state": "created",
+        "parts": [
+            {
+                "id": 0,
+                "name": "Persona 1",
+                "email": "persona1@scapeshift.io"
+            },
+            {
+                "id": 1,
+                "name": "Persona 2",
+                "email": "persona2@scapeshift.io"
+            },
+            {
+                "id": 2,
+                "name": "Persona 3",
+                "email": "persona3@scapeshift.io"
+            },
+            {
+                "id": 3,
+                "name": "Persona 4",
+                "email": "persona4@scapeshift.io"
+            }
+        ],
+        "doc": {}
+    }
+}

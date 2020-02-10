@@ -1,0 +1,86 @@
+{
+    "activeTransactions": [
+        {
+            "id": 0,
+            "data": {
+                "nameTransaction": {
+                    "name": "Operación X"
+                },
+                "participants": {
+                    "arrayOfConditionals": [
+                        {
+                            "Usuarios": {
+                                "arrayOfConditionals": [
+                                    {
+                                        "Email": "r@gmail.com"
+                                    },
+                                    {
+                                        "Email": "r2@gmail.com"
+                                    }
+                                ]
+                            },
+                            "Titulo": "Asesor Legal del Banco",
+                            "Empresa": "Juan Antonio Abogados"
+                        },
+                        {
+                            "Usuarios": {
+                                "arrayOfConditionals": [
+                                    {
+                                        "Email": "r3@gmail.com"
+                                    },
+                                    {
+                                        "Email": "r4@gmail.com"
+                                    }
+                                ]
+                            },
+                            "Titulo": "Asesor Legal del Banco",
+                            "Empresa": "Juan Antonio Abogados"
+                        }   
+                    ]
+                }
+            },
+            "state": "created"
+        },
+        {
+            "id": 1,
+            "data": {
+                "nameTransaction": {
+                    "name": "Operación X"
+                },
+                "participants": {
+                    "arrayOfConditionals": [
+                        {
+                            "Usuarios": {
+                                "arrayOfConditionals": [
+                                    {
+                                        "Email": "r@gmail.com"
+                                    },
+                                    {
+                                        "Email": "r2@gmail.com"
+                                    }
+                                ]
+                            },
+                            "Titulo": "Asesor Legal del Banco",
+                            "Empresa": "Juan Antonio Abogados"
+                        },
+                        {
+                            "Usuarios": {
+                                "arrayOfConditionals": [
+                                    {
+                                        "Email": "r3@gmail.com"
+                                    },
+                                    {
+                                        "Email": "r4@gmail.com"
+                                    }
+                                ]
+                            },
+                            "Titulo": "Asesor Legal del Banco",
+                            "Empresa": "Juan Antonio Abogados"
+                        }   
+                    ]
+                }
+            },
+            "state": "created"
+        }
+    ]
+}

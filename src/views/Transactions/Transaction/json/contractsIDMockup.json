@@ -1,0 +1,24 @@
+{
+    "contractsID": [
+        {
+            "id": 0,
+            "name": "Contrato 1"
+        },
+        {
+            "id": 1,
+            "name": "Contrato 2"
+        },
+        {
+            "id": 2,
+            "name": "Contrato 3"
+        },
+        {
+            "id": 3,
+            "name": "Contrato 4"
+        },
+        {
+            "id": 4,
+            "name": "Contrato 5"
+        }
+    ]
+}

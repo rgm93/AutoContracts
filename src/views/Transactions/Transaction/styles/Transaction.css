@@ -1,0 +1,26 @@
+.transaction {
+    display: flex;
+    justify-content: center;
+    padding-top: "3%";
+}
+
+.buttonAddContract {
+    width: 90% !important;
+}
+
+@media (max-width: 1080px) and (min-width: 960px) {
+    .transaction {
+        display: block;
+        padding-top: "3%";
+    }
+}
+
+@media (max-width: 395px) {
+    .transaction {
+        display: block;
+        padding-top: "3%";
+    }
+    .buttonAddContract {
+        width: 40%  !important;
+    }
+}

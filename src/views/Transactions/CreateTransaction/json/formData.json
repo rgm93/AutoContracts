@@ -1,0 +1,10 @@
+{
+  "boolean": {
+    "radio": true
+  },
+  "assignmentPercentage": 50,
+  "conditional": {
+    "¿Se regula una garantía a primer requerimiento?": "No",
+    "selectorTP": "Total"
+  }
+}

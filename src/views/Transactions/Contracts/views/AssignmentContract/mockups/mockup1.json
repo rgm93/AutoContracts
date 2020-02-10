@@ -1,0 +1,24 @@
+{
+  "form": {
+    "assignor": {
+      "name": "Goldman Sachs International, S.A.",
+      "nif": "A73920938",
+      "socialDom": "Paseo de la Castellana 216, 28046  - Madrid, Madrid, España"
+    },
+    "transferee": {
+      "name": "JP Morgan España, S.A.",
+      "nif": "A28253037",
+      "socialDom": "Paseo De La Castellana, Nª. 31  28046  - Madrid",
+      "contactNotify": "Rodrigo Pérez López",
+      "addressNotify": "Paseo De La Castellana, Nª. 33  28046  - Madrid, Madrid, España",
+      "phone": 34913456789,
+      "email": "Rodrigo.lopez@jpmorgan.com"
+    },
+    "city": "Madrid",
+    "date": "2019-08-23"
+  },
+  "conditional": {
+    "selectorTP": "Parcial",
+    "¿Se regula una garantía a primer requerimiento?": "Si"
+  }
+}

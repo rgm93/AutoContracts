@@ -1,0 +1,58 @@
+{
+   "title": "",
+   "type": "object",
+   "properties": {
+      "form": {
+         "title": "Nueva Operación",
+         "type": "object",
+         "required": [
+            "nameTransaction",
+            "participants"
+         ],
+         "properties": {
+            "nameTransaction": {
+               "type": "object",
+               "title": "Nombre de la operación",
+               "required": [
+                  "name"
+               ],
+               "properties": {
+                  "name": {
+                     "type": "string",
+                     "format": "string",
+                     "minLength": 2,
+                     "maxLength": 50,
+                     "title": "Nombre"
+                  }
+               }
+            },
+            "participants": {
+               "type": "object",
+               "title": "Participantes",
+               "required": [
+                  "arrayOfConditionals"
+               ],
+               "properties": {
+                  "arrayOfConditionals": {
+                     "type": "array",
+                     "default": [],
+                     "title":"",
+                     "items": {
+                        "type": "object",
+                        "properties": {
+                           "Email": {
+                              "title":"Email participante",
+                              "type": "string",
+                              "minLength": 5,
+                              "maxLength": 160
+                           }
+                        }
+                     },
+                     "uniqueItems": true
+                  }
+               }
+            }
+         }
+      }
+   }
+}

@@ -1,0 +1,82 @@
+{
+    "tasksLists": [
+        {
+            "id": 0,
+            "name": "Lista 1",
+            "tasks": [
+                {
+                    "task": "Tarea 1",
+                    "isCompleted": false,
+                    "state": "started" 
+                },
+                {
+                    "task": "Tarea 2",
+                    "isCompleted": false,
+                    "state": "processed" 
+                },
+                {
+                    "task": "Tarea 3",
+                    "isCompleted": false,
+                    "state": "finished" 
+                },
+                {
+                    "task": "Tarea 4",
+                    "isCompleted": false,
+                    "state": "started" 
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "name": "Lista 2",
+            "tasks": [
+                {
+                    "task": "Tarea 5",
+                    "isCompleted": false,
+                    "state": "started" 
+                },
+                {
+                    "task": "Tarea 6",
+                    "isCompleted": false,
+                    "state": "processed" 
+                },
+                {
+                    "task": "Tarea 7",
+                    "isCompleted": false,
+                    "state": "finished" 
+                },
+                {
+                    "task": "Tarea 8",
+                    "isCompleted": false,
+                    "state": "started" 
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Pista 1",
+            "tasks": [
+                {
+                    "task": "Tarea 9",
+                    "isCompleted": false,
+                    "state": "started" 
+                },
+                {
+                    "task": "Tarea 10",
+                    "isCompleted": false,
+                    "state": "processed" 
+                },
+                {
+                    "task": "Tarea 11",
+                    "isCompleted": false,
+                    "state": "finished" 
+                },
+                {
+                    "task": "Tarea 12",
+                    "isCompleted": false,
+                    "state": "started" 
+                }
+            ]
+        }
+    ]
+}
