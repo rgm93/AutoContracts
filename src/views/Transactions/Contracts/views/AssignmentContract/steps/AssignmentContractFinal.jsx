@@ -7,7 +7,7 @@ import "../contract/AssignmentContract.css";
 //import uischema from "../json/uiSchema.json";
 //import formdata from "../json/formData.json";
 //import ReactS3 from "react-s3";
-import AssignmentContractResum from "./AssignmentContractResume";
+import AssignmentContractResum from "./AssignmentContractResum";
 import SCSHID from "../../../components/SCSHID/SCSHID";
 import PDFEditor from "../../PDFEditor";
 //import PDFEditor5 from "../../PDFEditor5"
@@ -19,7 +19,7 @@ import { Tab, Row, Col, Nav } from 'react-bootstrap'
 //import { BugReport, Code, Cloud } from "@material-ui/icons"
 
 
-import { contract } from "../mockups/mockupContract";
+import { contract } from "../mockups/mockContract";
 import {
   sendPreviewContract
   /*getPreviewContract*/
@@ -55,7 +55,7 @@ class AssignmentContractFinal extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ form: mockdata, isResuming: true }); //mockdata
+    this.setState({ form: this.props.forms, isResuming: true }); //mockdata
   }
 
   scrollUp = () => {
@@ -240,12 +240,6 @@ class AssignmentContractFinal extends React.Component {
                       <Nav.Item>
                         <Nav.Link eventKey="first">Enviar contrato</Nav.Link>
                       </Nav.Item>
-                      {/*<Nav.Item>
-                        <Nav.Link eventKey="second">Estado del contrato</Nav.Link>
-                      </Nav.Item>*/}
-                      <Nav.Item>
-                        <Nav.Link eventKey="second">Lista de tareas</Nav.Link>
-                      </Nav.Item>
                     </Nav>
                   </Row>
                   <Col sm={12}>
@@ -271,48 +265,6 @@ class AssignmentContractFinal extends React.Component {
                               Enviar
                             </button>
                           </div>
-                      </Tab.Pane>
-                      {/*<Tab.Pane eventKey="second">
-                        <h2 style={{ textAlign: "center", marginTop: "30px" }}>
-                          Estado del contrato
-                        </h2>
-                        <div className="contractStates">
-                          <div className="contractState">
-                            <h3>Cedente</h3>
-                            <div className="state">
-                              <div id="dark_green" className="stateCircle"></div>
-                              <span className="explanation">Validar</span>
-                            </div>
-                            <div className="state">
-                              <div id="dark_red" className="stateCircle"></div>
-                              <span className="explanation">Corregir</span>
-                            </div>
-                            <div className="state">
-                              <div id="light_orange" className="stateCircle"></div>
-                              <span className="explanation">Propuesto</span>
-                            </div>
-                          </div>
-                          <div className="contractState">
-                            <h3>Cesionario</h3>
-                            <div className="state">
-                              <div id="dark_green" className="stateCircle"></div>
-                              <span className="explanation">Validar</span>
-                            </div>
-                            <div className="state">
-                              <div id="dark_red" className="stateCircle"></div>
-                              <span className="explanation">Corregir</span>
-                            </div>
-                            <div className="state">
-                              <div id="light_orange" className="stateCircle"></div>
-                              <span className="explanation">Propuesto</span>
-                            </div>
-                          </div>
-                        </div>
-                      </Tab.Pane>*/}
-                      <Tab.Pane eventKey="second">
-                        <div className="selCenter">
-                          <TasksList />
-                        </div>
                       </Tab.Pane>
                     </Tab.Content>
                   </Col>

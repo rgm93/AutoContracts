@@ -9,14 +9,6 @@
             "financeContract": {
                "type": "object",
                "title": "2.1 - Contrato de Financiación",
-               "required": [
-                  "financeAmmount",
-                  "date",
-                  "nameAgent",
-                  "city",
-                  "notary",
-                  "protocol"
-               ],
                "properties": {
                   "financeAmmount": {
                      "type": "number",
@@ -27,15 +19,11 @@
                   "date": {
                      "type": "string",
                      "format": "date",
-                     "title": "Fecha",
-                     "default": ""
+                     "title": "Fecha"
                   },
                   "debtor": {
                      "type": "object",
                      "title": "Deudores",
-                     "required": [
-                        "arrayOfConditionalsObject"
-                     ],
                      "properties": {
                         "arrayOfConditionalsObject": {
                            "type": "array",
@@ -74,10 +62,6 @@
                   "assignmentClause": {
                      "type": "object",
                      "title": "Cláusula de cesiones",
-                     "required": [
-                        "numberClause",
-                        "titleClause"
-                     ],
                      "properties": {
                         "numberClause": {
                            "type": "number",
@@ -96,10 +80,6 @@
                   "sunsetClause": {
                      "type": "object",
                      "title": "Cláusula de Causas de Vencimiento Anticipado",
-                     "required": [
-                        "numberClause",
-                        "titleClause"
-                     ],
                      "properties": {
                         "numberClause": {
                            "type": "number",
@@ -118,10 +98,6 @@
                   "notifyClause": {
                      "type": "object",
                      "title": "Cláusula de Notificaciones",
-                     "required": [
-                        "numberClause",
-                        "titleClause"
-                     ],
                      "properties": {
                         "numberClause": {
                            "type": "number",
@@ -147,9 +123,6 @@
             "guaranteesFinance": {
                "type": "object",
                "title": "2.2 - Garantías",
-               "required": [
-                  "arrayOfConditionals"
-               ],
                "properties": {
                   "arrayOfConditionals": {
                      "type": "array",
@@ -164,23 +137,15 @@
             "assignmentDetails": {
                "type": "object",
                "title": "2.3 - Detalles de la cesión",
-               "required": [
-                  "assignmentDate"
-               ],
                "properties": {
                   "assignmentDate": {
                      "type": "string",
                      "format": "date",
-                     "title": "Fecha",
-                     "default": ""
+                     "title": "Fecha"
                   },
                   "assignmentAmmount": {
                      "type": "object",
                      "title": "Cantidad cedida",
-                     "required": [
-                        "currency",
-                        "percentage"
-                     ],
                      "properties": {
                         "currency":{
                            "type": "number",
@@ -204,10 +169,6 @@
                               },
                               {
                                 "title": "Parcial",
-                                "required": [
-                                   "ammount",
-                                   "percentage"
-                                ],
                                 "properties": {
                                   "ammount": {
                                     "type": "number",
@@ -224,14 +185,11 @@
                                 }
                               }
                             ],
-                           "default": ""
+                           "default": "Total"
                         },
                         "assignmentPrice": {
                            "type": "object",
                            "title": "Precio de la cesión",
-                           "required": [
-                              "price"
-                           ],
                            "properties": {
                               "price": {
                                  "type": "number",
@@ -244,9 +202,6 @@
                         "payDetails": {
                            "type": "object",
                            "title": "Detalles del pago",
-                           "required": [
-                              "bankAccount"
-                           ],
                            "properties": {
                               "bankAccount": {
                                  "type": "string",
@@ -257,10 +212,6 @@
                               "limitHour": {
                                  "type": "object",
                                  "title": "Hora límite de pago",
-                                 "required": [
-                                    "hour",
-                                    "minutes"
-                                 ],
                                  "properties": {
                                     "hour": {
                                        "type": "number",
@@ -331,11 +282,7 @@
                            "minLength": 5,
                            "maxLength": 160
                         }
-                     },
-                     "required": [
-                        "Número de Cláusula",
-                        "Título de Cláusula"
-                     ]
+                     }
                   }
                ]
             }
@@ -415,15 +362,7 @@
                            "minLength": 1,
                            "maxLength": 5
                         }
-                     },
-                     "required": [
-                        "Sociedades Pignorada",
-                        "Pignorante",
-                        "Fecha",
-                        "Ciudad",
-                        "Notario",
-                        "Protocolo"
-                     ]
+                     }
                   },
                   {
                      "properties": {
@@ -478,15 +417,7 @@
                            "minLength": 1,
                            "maxLength": 5
                         }
-                     },
-                     "required": [
-                        "Sociedades Pignorada",
-                        "Pignorante",
-                        "Fecha",
-                        "Ciudad",
-                        "Notario",
-                        "Protocolo"
-                     ]
+                     }
                   },
                   {
                      "properties": {
@@ -528,14 +459,7 @@
                            "minLength": 1,
                            "maxLength": 5
                         }
-                     },
-                     "required": [
-                        "Pignorante",
-                        "Fecha",
-                        "Ciudad",
-                        "Notario",
-                        "Protocolo"
-                     ]
+                     }
                   },
                   {
                      "properties": {
@@ -577,14 +501,7 @@
                            "minLength": 1,
                            "maxLength": 5
                         }
-                     },
-                     "required": [
-                        "Hipotecante",
-                        "Fecha",
-                        "Ciudad",
-                        "Notario",
-                        "Protocolo"
-                     ]
+                     }
                   }
                ]
             }
@@ -598,9 +515,6 @@
                   "type": "string"
                }
             },
-            "required": [
-               "Sociedad Pignorada"
-            ],
             "dependencies": {
                "Sociedad Pignorada": {
                   "oneOf": [
@@ -626,9 +540,6 @@
                   "type": "string"
                }
             },
-            "required": [
-               "Pignorante"
-            ],
             "dependencies": {
                "Pignorante": {
                   "oneOf": [
@@ -654,9 +565,6 @@
                   "type": "string"
                }
             },
-            "required": [
-               "Hipotecante"
-            ],
             "dependencies": {
                "Hipotecante": {
                   "oneOf": [
@@ -683,9 +591,6 @@
                "type": "string"
             }
          },
-         "required": [
-            "Deudor"
-         ],
          "dependencies": {
             "Deudor": {
                "oneOf": [

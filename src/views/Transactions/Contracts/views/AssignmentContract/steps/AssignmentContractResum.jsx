@@ -20,25 +20,34 @@ class AssignmentContractResume extends React.Component {
     gestionarGarantías(data, type) {
         let result = '';
         let resultArray;
-
-        switch(type) {
-            case 'deudores':
-                resultArray = data[1].form.financeContract.debtor.arrayOfConditionalsObject;
-                resultArray.map(res => result += res.Deudor + ', ');
-                break;
-            case 'sociedades':
-                data['Sociedades Pignorada']['arrayOfConditionals2'].map(res => result += res['Sociedad Pignorada'] + ', ');
-                break;
-            case 'pignorantes':
-                data['Pignorante']['arrayOfConditionals2'].map(res => result += res['Pignorante'] + ', ');
-                break;
-            case 'hipotecantes':
-                data['Hipotecante']['arrayOfConditionals2'].map(res => result += res['Hipotecante'] + ', ');
-                break;
-            default: break;
+        if (data != undefined) {
+            switch(type) {
+                case 'deudores':
+                    resultArray = data[1].form.financeContract.debtor.arrayOfConditionalsObject;
+                    if (resultArray != undefined) { 
+                        resultArray.map(res => result += res.Deudor + ', ');
+                    }
+                    break;
+                case 'sociedades':
+                    if (data['Sociedades Pignorada']['arrayOfConditionals2'] != undefined) {
+                      data['Sociedades Pignorada']['arrayOfConditionals2'].map(res => result += res['Sociedad Pignorada'] + ', ');  
+                    }
+                    break;
+                case 'pignorantes':
+                    if (data['Pignorante']['arrayOfConditionals2'] != undefined) {
+                      data['Pignorante']['arrayOfConditionals2'].map(res => result += res['Pignorante'] + ', ');
+                    }
+                    break;
+                case 'hipotecantes':
+                    if (data['Hipotecante']['arrayOfConditionals2'] != undefined) {
+                       data['Hipotecante']['arrayOfConditionals2'].map(res => result += res['Hipotecante'] + ', ');
+                    }
+                    break;
+                default: break;
+            }
+            result = result.replace(/,\s*$/, " ");
         }
         
-        result = result.replace(/,\s*$/, " ");
         return result;
     }
       
@@ -53,7 +62,8 @@ class AssignmentContractResume extends React.Component {
         let partTotalCurrency = data[1].form.assignmentDetails.assignmentAmmount;
         let primerReq = data[1].conditional['¿Se regula una garantía a primer requerimiento?']
         let limitTime = data[1].form.assignmentDetails.assignmentAmmount.payDetails.limitHour['hour'] + ':' + data[1].form.assignmentDetails.assignmentAmmount.payDetails.limitHour['minutes']
-        let guarantees = data[1].form.guaranteesFinance['arrayOfConditionals'].map(g => g);
+        let guarantees = data[1].form.guaranteesFinance['arrayOfConditionals'] != undefined ? 
+                        data[1].form.guaranteesFinance['arrayOfConditionals'].map(g => g) : ''
         return(
             <div className="resume">
                 <CollapsibleList trigger="1. Partes y datos del contrato">
@@ -106,50 +116,53 @@ class AssignmentContractResume extends React.Component {
                     </CollapsibleList>
                     <CollapsibleList trigger="2.2 Garantías">
                     {
-                            guarantees.map((g) => 
-                            g['Tipo de Garantía'] === 'Prenda de Acciones' ? (
-                                <div key={g['Protocolo']}>
-                                    <CollapsibleList trigger="Prenda de Acciones">
-                                        <h6>Sociedad(es) Pignorada(s): {this.gestionarGarantías(g, 'sociedades')}</h6>
-                                        <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
-                                        <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
-                                        <h6>Ciudad de firma: {g['Ciudad']}</h6>
-                                        <h6>Notario: {g['Notario']}</h6>
-                                        <h6>Protocolo: {g['Protocolo']}</h6>
-                                    </CollapsibleList>
-                                </div>
-                            ) : ( g['Tipo de Garantía'] === 'Prenda de Participaciones' ? (
-                                <div key={g['Protocolo']}>
-                                    <CollapsibleList trigger="Prenda de Participaciones">
-                                        <h6>Sociedad(es) Pignorada(s): {this.gestionarGarantías(g, 'sociedades')}</h6>
-                                        <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
-                                        <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
-                                        <h6>Ciudad de firma: {g['Ciudad']}</h6>
-                                        <h6>Notario: {g['Notario']}</h6>
-                                        <h6>Protocolo: {g['Protocolo']}</h6>
-                                    </CollapsibleList>
-                                </div>
-                            ) : ( g['Tipo de Garantía'] === 'Prenda de Derechos de Crédito' ? (
-                                <div key={g['Protocolo']}>
-                                    <CollapsibleList trigger="Prenda de Derechos de Crédito">
-                                        <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
-                                        <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
-                                        <h6>Ciudad de firma: {g['Ciudad']}</h6>
-                                        <h6>Notario: {g['Notario']}</h6>
-                                        <h6>Protocolo: {g['Protocolo']}</h6>
-                                    </CollapsibleList>
-                                </div>
-                            ) : (g['Tipo de Garantía'] === 'Hipoteca' ? (
-                                <div key={g['Protocolo']}>
-                                    <CollapsibleList trigger="Hipoteca">
-                                        <h6>Hipotencante(s): {this.gestionarGarantías(g, 'hipotecantes')} </h6>
-                                        <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
-                                        <h6>Ciudad de firma: {g['Ciudad']}</h6>
-                                        <h6>Notario: {g['Notario']}</h6>
-                                        <h6>Protocolo: {g['Protocolo']}</h6>
-                                    </CollapsibleList>
-                                </div>
-                            ) : null ))))
+                            guarantees != '' ? (
+                                console.log('guarrr', guarantees),
+                                guarantees.map((g) => 
+                                g['Tipo de Garantía'] === 'Prenda de Acciones' ? (
+                                    <div key={g['Protocolo']}>
+                                        <CollapsibleList trigger="Prenda de Acciones">
+                                            <h6>Sociedad(es) Pignorada(s): {this.gestionarGarantías(g, 'sociedades')}</h6>
+                                            <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
+                                            <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
+                                            <h6>Ciudad de firma: {g['Ciudad']}</h6>
+                                            <h6>Notario: {g['Notario']}</h6>
+                                            <h6>Protocolo: {g['Protocolo']}</h6>
+                                        </CollapsibleList>
+                                    </div>
+                                ) : ( g['Tipo de Garantía'] === 'Prenda de Participaciones' ? (
+                                    <div key={g['Protocolo']}>
+                                        <CollapsibleList trigger="Prenda de Participaciones">
+                                            <h6>Sociedad(es) Pignorada(s): {this.gestionarGarantías(g, 'sociedades')}</h6>
+                                            <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
+                                            <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
+                                            <h6>Ciudad de firma: {g['Ciudad']}</h6>
+                                            <h6>Notario: {g['Notario']}</h6>
+                                            <h6>Protocolo: {g['Protocolo']}</h6>
+                                        </CollapsibleList>
+                                    </div>
+                                ) : ( g['Tipo de Garantía'] === 'Prenda de Derechos de Crédito' ? (
+                                    <div key={g['Protocolo']}>
+                                        <CollapsibleList trigger="Prenda de Derechos de Crédito">
+                                            <h6>Pignorante(s): {this.gestionarGarantías(g, 'pignorantes')}</h6>
+                                            <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
+                                            <h6>Ciudad de firma: {g['Ciudad']}</h6>
+                                            <h6>Notario: {g['Notario']}</h6>
+                                            <h6>Protocolo: {g['Protocolo']}</h6>
+                                        </CollapsibleList>
+                                    </div>
+                                ) : (g['Tipo de Garantía'] === 'Hipoteca' ? (
+                                    <div key={g['Protocolo']}>
+                                        <CollapsibleList trigger="Hipoteca">
+                                            <h6>Hipotencante(s): {this.gestionarGarantías(g, 'hipotecantes')} </h6>
+                                            <h6>Fecha: {this.getFormatDate(g['Fecha'])}</h6>
+                                            <h6>Ciudad de firma: {g['Ciudad']}</h6>
+                                            <h6>Notario: {g['Notario']}</h6>
+                                            <h6>Protocolo: {g['Protocolo']}</h6>
+                                        </CollapsibleList>
+                                    </div>
+                                ) : null ))))
+                            ) : null
                         }
                     </CollapsibleList>
                     <CollapsibleList trigger="2.3 Detalles de la cesión">
@@ -157,12 +170,12 @@ class AssignmentContractResume extends React.Component {
                         <h5>Fecha de Efectividad: {this.getFormatDate(data[1].form.assignmentDetails.assignmentDate)}</h5>
                         <CollapsibleList trigger="Cantidad Cedida">
                             <h6>Euros: {data[1].form.assignmentDetails.assignmentAmmount.assignmentPrice.price}€</h6>
-                            <h6>Porcentaje sobre el total del Contrato de Financiación: {data[1].form.assignmentDetails.assignmentAmmount.percentage.toLocaleString()}%</h6>
+                            <h6>Porcentaje sobre el total del Contrato de Financiación: {data[1].form.assignmentDetails.assignmentAmmount.percentage != undefined ? data[1].form.assignmentDetails.assignmentAmmount.percentage.toLocaleString() : ''}%</h6>
                             {
                                 partTotal.includes('parte') ?  
                                 <div>
-                                    <h6>Cantidad retenida por el Cedente: {partTotalCurrency.selectorTP.ammount.toLocaleString()}€</h6>
-                                    <h6>Porcentaje retenido por el Cedente: {partTotalCurrency.selectorTP.percentage.toLocaleString()}%</h6>
+                                    <h6>Cantidad retenida por el Cedente: {partTotalCurrency.selectorTP.ammount != undefined ? partTotalCurrency.selectorTP.ammount.toLocaleString() : ''}€</h6>
+                                    <h6>Porcentaje retenido por el Cedente: {partTotalCurrency.selectorTP.percentage != undefined ? partTotalCurrency.selectorTP.percentage.toLocaleString() : ''}%</h6>
                                 </div>
                                 : null
                             }

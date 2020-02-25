@@ -206,3 +206,54 @@ button[disabled]{
     margin: 10% 0 5%;
     text-align: center;
 }
+
+.container {
+    margin-right: 50% !important;
+}
+
+.contractPreviewStepsStyle {
+    width: calc(101%);
+}
+
+.contractStepsStyle {
+    width: calc(101% - 110px);
+}
+
+@media (max-width: 1400px) {
+    .contractPreviewStepsStyle {
+        width: calc(102%);
+    }
+    .contractStepsStyle {
+        width: calc(102% - 100px);
+    }
+}
+
+@media (max-width: 1200px) {
+    .container{
+        max-width: 1140px;
+    }
+    .contractPreviewStepsStyle {
+        width: calc(105%);
+    }
+    .contractStepsStyle {
+        width: calc(105% - 130px);
+    }
+}
+
+@media (max-width: 660px) {
+    .contractPreviewStepsStyle {
+        width: calc(110%);
+    }
+    .contractStepsStyle {
+        width: calc(110% - 150px);
+    }
+}
+
+@media (max-width: 570px) {
+    .contractPreviewStepsStyle {
+        width: calc(115%);
+    }
+}
+
+
+

@@ -30,7 +30,7 @@ class AssignmentContractPreviewSteps extends React.Component {
       const onSubmit = ({formData}, e) => this.getFormData(formData, e);
       
       return (
-         <div>
+         <div style={{width: "calc(100% - 100px)"}}>
             <Form 
                className="inputForm"
                schema={schema}

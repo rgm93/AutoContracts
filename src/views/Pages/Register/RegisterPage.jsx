@@ -49,7 +49,8 @@ import {
   generateValidationCode,
   sendDocumentPhoto,
   scannnerFaceDocument,
-  scannerBackDocument
+  scannerBackDocument,
+  activeAccount
 } from "./functions/functionsRegister.js";
 
 import { setMnemonicPhrase } from "../../Transactions/Contracts/functions/functionsContract"
@@ -370,35 +371,15 @@ class RegisterPage extends Component {
 
   handleVerifyEmailCode = vals => {
     if (vals === localStorage.getItem("emailValidationCode")) {
+
+      let checkingEmail = true;
+      let verifyEmail = false;
       this.setState({checkingEmail: true})
-      const body = JSON.stringify({
-        "status_account": 'ACT'
-      });
-      axios.patch('http://172.20.10.3:8000/api/v1/users/active_acccount/', body, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Token ' + localStorage.getItem('authtoken')
-        }
-      })
-      .then((response) => {
-        console.log(response.data)
-        setTimeout(() => {
-          this.setState({checkingEmail: false, verifyEmail: true})
-        }, 3000);
-      }).catch((error) => {
-        console.log('response', error.response.data['error'])
-        alert(error.response.data['error'])
-      })
-    }
-    
-    /*axios.post('http://172.17.102.25:8000/api/v1/users/create/', body, {
-      headers: {
-        'Content-Type': 'application/json',
+      if (this.activeAccount(localStorage.getItem('authtoken')) != undefined) {
+        checkingEmail = false; verifyEmail = true
       }
-    })
-    .then((response) => {
-      console.log(response.data)
-    })*/
+      this.setState({checkingEmail, verifyEmail})
+    }
   }
   
   handleSelectInput = event => {

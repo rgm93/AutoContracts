@@ -1,7 +1,31 @@
 {
-   "title": "",
+   "title": "Generación de Contrato",
    "type": "object",
    "properties": {
+      "nameType" :{
+         "title": "Nombre y tipo de contrato",
+         "type": "object",
+         "required": [
+            "nameContract",
+            "contractType"
+         ],
+         "properties":{
+            "nameContract": {
+               "title": "Nombre del contrato",
+               "type": "string"
+            },
+            "contractType": {
+               "title": "Tipo de contrato",
+               "type": "string",
+               "enum": [
+                 "Contrato de Cesión"
+               ],
+               "enumNames": [
+                 "Contrato de Cesión"
+               ]
+            }
+         }
+      },
       "form": {
          "title": "Entidades a intervenir en la operación",
          "type": "object",

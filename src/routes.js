@@ -110,7 +110,7 @@ var dashRoutes = [
   },
   {
     path: "/assignmentContract",
-    name: "Contrato de Cesión de Posición Contractual",
+    name: "Nuevo contrato",
     component: AssignmentContract,
     layout: "/admin",
     invisible: true
@@ -137,9 +137,10 @@ var dashRoutes = [
     layout: "/auth"
   },
   {
-    path: "/login",
+    path: "/logout",
     name: "Cerrar Sesión",
     icon: Lock,
+    component: LoginPage,
     layout: "/auth",
     invisible: false
   },

@@ -31,5 +31,6 @@
     {
       "Hipotecante": "Hipotecante"
     }
-  ]
+  ],
+  "contractType": "Seleccione un tipo de contrato"
 }

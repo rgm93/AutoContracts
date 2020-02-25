@@ -23,17 +23,23 @@ import SCLogo from "assets/img/scapeshift/sc1.jpeg";
 
 import loginPageStyle from "assets/jss/material-dashboard-pro-react/views/loginPageStyle.jsx";
 //import axios from "axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, Router, Route, Switch, Redirect } from "react-router-dom";
+
+import AuthProvider from 'providers/AuthProvider'
 
 import {
   verifyEmail,
   verifyLength,
+  verifyMnemonicWords,
+  formLogIn,
+  isAccountExists,
+  isAccountActivated,
+  checkMnemonicPhrase
 } from "./Register/functions/functionsRegister.js";
 
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
-    // we use this to make the card to appear after the page has been rendered
     this.state = {
       signForm: {
         email: '',
@@ -83,7 +89,7 @@ class LoginPage extends React.Component {
         }); 
         break;
       case 'password': 
-        verifyLength(e.target.value, 8) ? validateForm = 'sucess' : validateForm = 'error'
+        verifyLength(e.target.value, 6) ? validateForm = 'sucess' : validateForm = 'error'
         this.setState({
           signForm: {
             ...this.state.signForm, 
@@ -96,7 +102,7 @@ class LoginPage extends React.Component {
         }); 
         break;
       case 'masterPassword': 
-        verifyLength(e.target.value, 12) ? validateForm = 'sucess' : validateForm = 'error'
+        verifyMnemonicWords(e.target.value) ? validateForm = 'sucess' : validateForm = 'error'
         this.setState({
           signForm: {
             ...this.state.signForm, 
@@ -133,38 +139,41 @@ class LoginPage extends React.Component {
     }
   }
 
-  login = () => {
-    /*const body = JSON.stringify({
-      "username": this.state.username,
-      "password": this.state.password
-    })
-    axios.post('http://172.17.102.25:8000/api/v1/users/login/', body, {
-        headers: {
-          'Content-Type': 'application/json',
+  login = async () => {
+    let email = this.state.signForm.email
+    let password = this.state.signForm.password
+    let existsAccount = await isAccountExists(email)
+    if (existsAccount) {
+      localStorage.setItem('existsAccount', existsAccount)
+      let data = await formLogIn(email, password)
+      if (data != 'Wrong Credentials') {
+        localStorage.setItem('authtoken', data)
+        let activated = await isAccountActivated()
+        if (activated) { 
+          localStorage.setItem('accountActivate', activated)
+          this.nextStep() 
         }
-      })
-      .then((response) => {
-        console.log(response.data)
-        this.nextStep()
-      })*/
-      this.nextStep()
+        else alert("La cuenta no está activada")
+      }
+      else alert("El email y/o la contraseña son incorrectas")
+    }
+    else alert("El email no existe en la plataforma.")
   }
-  checkMasterPassword = () => {
-    /*const body = JSON.stringify({
-      "masterPassword": this.state.masterPassword
-    })
-    axios.get('http://172.17.102.25:8000/api/v1/users/loginMaster/', body, {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-      .then((response) => {
-        console.log(response.data)
-        // Redirigir a Dashboard
-    })*/
+
+  checkMasterPassword = async () => {
+    let check = await checkMnemonicPhrase(this.state.signForm.masterPassword, localStorage.getItem('authtoken'))
+    console.log('ck', check)
+    if (check) {
+      localStorage.setItem('master', check)
+      AuthProvider.authenticate()
+      this.props.history.push('/admin/controlCentre')
+    } else {
+      alert('La clave maestra no existe')
+    }
   }
 
   nextStep = () => this.setState({stepForm: this.state.stepForm + 1})
+  
   render() {
     const { classes } = this.props
     const { stepForm } = this.state
@@ -278,11 +287,11 @@ class LoginPage extends React.Component {
                             }}
                           />
                           <div className={classes.center}>
-                          <NavLink to={"/admin/newTransaction"}>
-                            <Button round color="secondary" disabled={!this.state.buttonsSteps.buttonForm2} onClick={this.checkMasterPassword()}>
+                          {/*<NavLink to={"/admin/newTransaction"}>*/}
+                            <Button round color="secondary" disabled={!this.state.buttonsSteps.buttonForm2} onClick={this.checkMasterPassword}>
                               Verificar
                             </Button>
-                          </NavLink>
+                          {/*</NavLink>*/}
                           </div>
                         </form>
                       ) : null

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -68,31 +68,31 @@ class NewOperation extends React.Component {
     const handleParticipants = ({formData}, e) => this.checkParticipants(formData, e)
     return (
         <div>
-            { !filledForm ? 
-            (
-                <div>
-                    <GridContainer>
-                    <Form
-                        className="inputForm"
-                        schema={transactionForm}
-                        uiSchema={uischema}
-                        onChange={handleParticipants}
-                        onSubmit={onSubmit}
-                    >
-                        <div className="buttons">
-                        <button type="submit" className="buttonSteps">
-                            Crear Operación
-                        </button>
-                        </div>
-                    </Form>
-                    </GridContainer>
+          {!filledForm ? (
+            <GridContainer>
+            <Form
+                className="inputForm"
+                schema={transactionForm}
+                uiSchema={uischema}
+                onChange={handleParticipants}
+                onSubmit={onSubmit}
+            >
+                <div className="buttons">
+                <button type="submit" className="buttonSteps">
+                    Crear Operación
+                </button>
                 </div>
-            ) : (
-               <div>
-                    <ActiveTransactions transaction={this.state.transactionForm} />
-               </div> 
-            )
-            }
+            </Form>
+            </GridContainer>
+          ) : (
+              this.props.history.push(
+                {
+                  pathname: '/admin/transaction/',
+                  search: `?id=${0}`,
+                  name: this.state.transactionForm.data != null ? this.state.transactionForm.data.nameTransaction.name : ''
+                }
+              )
+          )}
         </div>
     );
   }

@@ -31,11 +31,11 @@ const steps = [
 
 class AssignmentContract extends Component {
    state = {
-      step: 2,
-      stepForm: 2,
+      step: 0,
+      stepForm: 0,
       forms: [],
       previewForm: [],
-      previewStep: false,
+      previewStep: true,
    }
 
    scrollUp = () => {
@@ -56,9 +56,13 @@ class AssignmentContract extends Component {
       if (stepMinus < schema.length && stepMinus > 0) { this.prevStep() }
    }
 
-   nextStep = () => {  this.setState({ step: this.state.step + 1 }) }
+   nextStep = () => {  
+      this.scrollUp();
+      this.setState({ step: this.state.step + 1 }) 
+   }
 
    prevStep = () => {
+      this.scrollUp();
       this.setState({ step: this.state.step - 1 })
       const stepMinus = this.state.step - 1;
       if (stepMinus < schema.length && stepMinus > 0) { this.setState({ stepForm: this.state.stepForm - 1 }) }
@@ -92,6 +96,7 @@ class AssignmentContract extends Component {
          }).catch((error) => {
             console.log('error', error)
          })*/
+      this.scrollUp();
       if(!this.state.previewForm.includes(form))
       {
          this.setState({previewForm: [...this.state.previewForm, form], previewStep: false})
@@ -105,7 +110,7 @@ class AssignmentContract extends Component {
       //console.log('forms', forms)
       
       return (
-         <div className='container'>
+         <div className="contractPreviewStepsStyle">
             {
                previewStep ? (
                   <AssignmentContractPreviewSteps 
@@ -119,7 +124,7 @@ class AssignmentContract extends Component {
                      <Stepper steps={steps} activeStep={step} />
                      {  
                         stepForm < schema.length ? (
-                           <div>
+                           <div className="contractStepsStyle">
                               <AssignmentContractSteps 
                                  entities={previewForm[0]}
                                  contract={schema[stepForm]}

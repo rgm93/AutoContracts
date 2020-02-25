@@ -5,19 +5,10 @@
       "form": {
          "title": "1. Partes y datos del contrato",
          "type": "object",
-         "required": [
-            "city",
-            "date"
-         ],
          "properties": {
             "assignor": {
                "type": "object",
                "title": "Cedente",
-               "required": [
-                  "name",
-                  "nif",
-                  "socialDom"
-               ],
                "properties": {
                   "name": {
                      "type": "string",
@@ -42,15 +33,6 @@
             "transferee": {
                "type": "object",
                "title": "Cesionario",
-               "required": [
-                  "name",
-                  "nif",
-                  "socialDom",
-                  "contactNotify",
-                  "addressNotify",
-                  "phone",
-                  "email"
-               ],
                "properties": {
                   "name": {
                      "type": "string",

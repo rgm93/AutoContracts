@@ -18,6 +18,7 @@ import login from "assets/img/login.jpeg";
 import lock from "assets/img/lock.jpeg";
 import error from "assets/img/clint-mckoy.jpg";
 import pricing from "assets/img/bg-pricing.jpeg";
+import AuthProvider from 'providers/AuthProvider'
 
 class Pages extends React.Component {
   componentDidMount() {
@@ -29,6 +30,9 @@ class Pages extends React.Component {
         return this.getRoutes(prop.views);
       }
       if (prop.layout === "/auth") {
+        if(prop.path === "/logout") {
+          AuthProvider.logout()
+        } 
         return (
           <Route
             path={prop.layout + prop.path}

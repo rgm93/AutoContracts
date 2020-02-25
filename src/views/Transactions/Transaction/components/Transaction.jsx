@@ -94,6 +94,23 @@ class Transaction extends React.Component {
                   </CardBody>
                 </Card>
               </GridItem>
+              <GridItem xs={12} sm={12} lg={6}>
+                <Card pricing>
+                  <CardBody pricing>
+                    <div className={classes.icon}>
+                      <Icon>control_point_duplicate</Icon>
+                    </div>
+                    <h3
+                      className={`${classes.cardTitle} ${classes.marginTop60}`}
+                    />
+                    <NavLink to={"/admin/wordContract"}>
+                      <Button round color="primary" className="buttonAddContract">
+                        Subir Contrato
+                      </Button>
+                    </NavLink>
+                  </CardBody>
+                </Card>
+              </GridItem>
             </GridContainer>
           </GridItem>
         </GridContainer>
