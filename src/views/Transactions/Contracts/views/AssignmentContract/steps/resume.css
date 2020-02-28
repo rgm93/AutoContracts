@@ -3,4 +3,5 @@
     padding: 5%;
     margin-top: 2%;
     margin-bottom: 5%;
+    width: calc(100% - 30px);
 }

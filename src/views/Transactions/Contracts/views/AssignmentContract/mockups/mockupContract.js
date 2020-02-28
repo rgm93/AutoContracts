@@ -60,7 +60,7 @@ function getPrimerReq(primerReq, data) {
     : null 
 }
 
-export const contract = (data) => {
+export const contractMockup = (data) => {
 
     let debtors = gestionarDeudores(data);
     let partTotal = data.conditional.selectorTP === 'Parcial' ? ' parte' : 'totalidad';

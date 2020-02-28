@@ -30,12 +30,17 @@ const steps = [
 ]
 
 class AssignmentContract extends Component {
+   constructor(props){
+      super(props)
+   }
    state = {
-      step: 0,
-      stepForm: 0,
-      forms: [],
+      step: this.props.location.stepContract != undefined ? this.props.location.stepContract : 1,
+      stepForm: this.props.location.stepForm != undefined ? this.props.location.stepForm : 0,
+      forms: this.props.location.forms != undefined ? this.props.location.forms : [],
       previewForm: [],
-      previewStep: true,
+      previewStep: this.props.location.stepForm != undefined ? this.props.location.previewStep : true,
+      stateContract: this.props.location.stateContract != undefined ? this.props.location.stateContract : 'isCreating',
+      isMocked: this.props.location.isMocked != undefined ? this.props.location.isMocked : false
    }
 
    scrollUp = () => {
@@ -103,9 +108,14 @@ class AssignmentContract extends Component {
       }
    }
 
+   componentDidMount() {
+      console.log('state', this.state)
+   }
+
    render() {
       const step = this.state.step - 1
-      const { previewForm, forms, stepForm, previewStep } = this.state
+      const { previewForm, forms, previewStep, stepForm, stateContract, isMocked } = this.state
+      console.log('isis', isMocked)
       //console.log('previewForm', previewForm)
       //console.log('forms', forms)
       
@@ -140,9 +150,11 @@ class AssignmentContract extends Component {
                            <AssignmentContractFinal
                               previewForm={previewForm}
                               forms={forms}
+                              state={stateContract}
                               nextStep={this.nextStep} 
                               prevStep={this.state.step !== 0 ? this.prevStep : null}
                               step={step}
+                              isMocked={isMocked}
                            /> 
                         )
                      } 

@@ -19,6 +19,7 @@ import { Tab, Row, Col, Nav } from 'react-bootstrap'
 //import { BugReport, Code, Cloud } from "@material-ui/icons"
 
 
+import { contractMockup } from "../mockups/mockupContract";
 import { contract } from "../mockups/mockContract";
 import {
   sendPreviewContract
@@ -37,6 +38,8 @@ class AssignmentContractFinal extends React.Component {
       form: {},
       html: "",
       pdfGenerated: false,
+      state: '',
+      isMocked: false,
       isEditing: false,
       isDrafting: false,
       isSigning: false,
@@ -55,7 +58,12 @@ class AssignmentContractFinal extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ form: this.props.forms, isResuming: true }); //mockdata
+    console.log('eses', this.props.isMocked)
+    this.setState({ 
+      form: this.props.isMocked ? mockdata : this.props.forms, 
+      state: this.props.state != undefined ? this.props.state : 'isResuming' ,
+      isMocked: this.props.isMocked
+    }); //mockdata
   }
 
   scrollUp = () => {
@@ -65,22 +73,23 @@ class AssignmentContractFinal extends React.Component {
 
   handleHTML = html => this.setState({ html });
 
-  changeView = type => {
+  changeView = state => {
     this.scrollUp();
-    console.log("typeviewarona", type);
-    switch (type) {
+    this.setState({ state });
+    /*switch (type) {
       case "editor":
-        this.setState({ isEditing: true, isDrafting: false });
+        
         break;
       case "preview":
         this.setState({ isDrafting: true, isEditing: false });
         break;
       default: break;
-    }
+    }*/
   };
-  next = type => {
+  next = state => {
     this.scrollUp();
-    console.log("typenextarona", type);
+    this.setState({ state });
+    /*console.log("typenextarona", type);
     switch (type) {
       case "preview":
         this.setState({ isDrafting: true, isResuming: false });
@@ -93,13 +102,14 @@ class AssignmentContractFinal extends React.Component {
         break;
       default: break;
 
-    }
+    }*/
     this.props.nextStep();
   };
 
-  back = type => {
+  back = state => {
     this.scrollUp();
-    console.log("typebackarona", type);
+    this.setState({ state });
+    /*console.log("typebackarona", type);
     switch (type) {
       case "resume":
         this.setState({ isResuming: false });
@@ -111,12 +121,23 @@ class AssignmentContractFinal extends React.Component {
         this.setState({ isSigning: false, isDrafting: true });
         break;
       default: break;
-    }
+    }*/
     this.props.prevStep();
   };
 
   handleSelectSend = event => this.setState({ selectSend: event.target.value });
-  getData = () => this.state.html !== '' ? this.state.html : contract(this.state.form)
+  getData = () => {
+    if (this.state.html !== '') {
+      return this.state.html
+    } else {
+      console.log('isMocked', this.state.isMocked)
+      if (this.state.isMocked) {
+        return contractMockup(mockdata)
+      } else return contract(this.state.form)
+    }
+    //this.state.html !== '' ? this.state.html : contract(this.state.form)
+      
+  }
   sendData = () => this.state.html !== "" ? ["html", this.state.html] : ["form", this.state.form]
   getHTML = (data) => this.setState({html: data})
 
@@ -182,12 +203,12 @@ class AssignmentContractFinal extends React.Component {
   }
 
   render() {
-    const { /*valueTabs,*/ html, form } = this.state
+    const { state, html, form } = this.state
     console.log('formsFinal', form)
     console.log('html', html)
     return (
       <div>
-        {this.state.isResuming ? (
+        {state === 'isResuming' ? (
           <div>
             <h3>
               {" "}
@@ -198,19 +219,19 @@ class AssignmentContractFinal extends React.Component {
             <div className="buttons">
               <button
                 className="buttonStepsBack"
-                onClick={() => this.back("resume")}
+                onClick={() => this.back("isResuming")}
               >
                 Atrás
               </button>
               <button
                 className="buttonGeneratePDF"
-                onClick={() => this.next("preview")}
+                onClick={() => this.next("isDrafting")}
               >
                 Generar Borrador
               </button>
             </div>
           </div>
-        ) : this.state.isEditing ? (
+        ) : state === 'isEditing' ? (
           <div>
             <div className="pdf"></div>
             <PDFEditor
@@ -218,9 +239,10 @@ class AssignmentContractFinal extends React.Component {
               changeView={this.changeView}
               handleHTML={this.handleHTML}
               state={this.state}
+              isMocked={this.state.isMocked}
             />
           </div>
-        ) : this.state.isDrafting ? (
+        ) : state === 'isDrafting' ? (
           <div>
           <div style={{display: 'flex'}}>
             {/*<PDFContract data={this.state.form} />*/}
@@ -275,7 +297,7 @@ class AssignmentContractFinal extends React.Component {
           <div className="buttons">
             <button
               className="buttonEditPDF"
-              onClick={() => this.changeView("editor")}
+              onClick={() => this.changeView("isEditing")}
             >
               Editar
             </button>
@@ -293,19 +315,19 @@ class AssignmentContractFinal extends React.Component {
             <button
               className="buttonGeneratePDF"
               //disabled={!this.state.agreeOnBoth}
-              onClick={() => this.next("sign")}
+              onClick={() => this.next("isSigning")}
             >
               Firmar
             </button>
           </div>
           </div>
           
-        ) : this.state.isSigning ? (
+        ) : state === 'isSigning' ? (
           <div>
             <SCSHID
-                  next={() => this.next("contract")}
-                  data={this.getData()}
-                  handleHTML={this.handleHTML}
+              next={() => this.next("isFinal")}
+              data={this.getData()}
+              handleHTML={this.handleHTML}
             />
             {
                 /*}: !this.state.isSigning ? (
@@ -347,8 +369,8 @@ class AssignmentContractFinal extends React.Component {
                      className="buttonGenerateEditPDF" 
                   onClick={this.editContract}>Editar contrato</button>*/}
           </div>
-        ) : this.state.isFinal ? (
-          <div style={{width: "100%", marginTop: "5%"}}>
+        ) : state === 'isFinal' ? (
+          <div style={{width: 'calc(100% - 30px)', marginTop: "5%"}}>
             <PDFContractViewer data={this.getData()} height="450px" />
           </div>
         ) : null }

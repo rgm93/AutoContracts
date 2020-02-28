@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { contract } from './AssignmentContract/mockups/mockupContract.js';
+import { contractMockup } from './AssignmentContract/mockups/mockupContract.js';
+import { contract } from './AssignmentContract/mockups/mockContract.js';
 import CKEditor from 'ckeditor4-react';
 
 import "./AssignmentContract/contract/AssignmentContract.css";
@@ -9,8 +10,9 @@ export default class PDFEditor extends Component {
 		super(props);
 
 		this.state = {
-			data: this.props.data[0] === 'form' ? contract(this.props.data[1]) 
-				: this.props.data[0] === 'html' ? this.props.data[1] 
+			data: this.props.data[0] === 'form' ? (
+				this.props.isMocked ? contractMockup(this.props.data[1]) : contract(this.props.data[1]))
+				: this.props.data[0] === 'html' ? (this.props.isMocked ? contractMockup(this.props.data[1]) : this.props.data[1])
 				: ''
 		};
 
@@ -32,12 +34,12 @@ export default class PDFEditor extends Component {
 
 	handleDataContent = () => {
 		this.props.handleHTML(this.state.data)
-		this.props.changeView('preview')
+		this.props.changeView('isDrafting')
 	}
 
 	render() {
 		return (
-			<div>
+			<div style={{width: 'calc(100% - 30px)', marginTop: "5%"}}>
 				<div style={{overflow: 'auto', marginTop: '25px', border: '4px solid gray'}}>
 					<CKEditor
                         data={this.state.data}
@@ -65,8 +67,8 @@ export default class PDFEditor extends Component {
 					/>
 				</div>
 				<div className="buttons">
-					<button className="buttonStepsBack" onClick={() => this.props.changeView('preview')}>Atrás</button>
-					<button className="buttonGeneratePDF" onClick={() => this.handleDataContent('preview')}>Generar borrador</button>
+					<button className="buttonStepsBack" onClick={() => this.props.changeView('isDrafting')}>Atrás</button>
+					<button className="buttonGeneratePDF" onClick={() => this.handleDataContent('isDrafting')}>Generar borrador</button>
 				</div>
 			</div>
 		);

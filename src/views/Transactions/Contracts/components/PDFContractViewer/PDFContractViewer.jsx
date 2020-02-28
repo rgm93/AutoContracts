@@ -232,7 +232,7 @@ class PDFContractViewer extends React.Component {
         <div>
            {
              loading ? (
-                <div style={{padding: "20% 0px 0% 40%", margin: "10% 0 40% 0"}}>
+                <div style={{width: 'calc(100% - 30px)', padding: "20% 0px 0% 45%", margin: "10% 0 40% 0"}}>
                   <SphereSpinner
                     size={60}
                     color="#00a6ac"

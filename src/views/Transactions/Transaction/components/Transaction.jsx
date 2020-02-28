@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -13,6 +13,8 @@ import Icon from "@material-ui/core/Icon";
 import dashboardStyle from "assets/jss/material-dashboard-pro-react/views/dashboardStyle";
 import transactionMockup from "../json/transactionMockup"
 import "../styles/Transaction.css"
+import AssignmentContractFinal from "../../Contracts/views/AssignmentContract/steps/AssignmentContractFinal";
+import mockdata from "../../Contracts/views/AssignmentContract/json/mockup.json";
 
 class Transaction extends React.Component {
   state = {
@@ -86,7 +88,14 @@ class Transaction extends React.Component {
                     <h3
                       className={`${classes.cardTitle} ${classes.marginTop60}`}
                     />
-                    <NavLink to={"/admin/assignmentContract"}>
+                    <NavLink to={{
+                      pathname: '/admin/assignmentContract',
+                      stateContract: 'isCreating',
+                      previewStep: true,
+                      stepContract: 1,
+                      stepForm: 0,
+                      isMocked: false
+                    }}>
                       <Button round color="primary" className="buttonAddContract">
                         Nuevo Contrato
                       </Button>
@@ -134,19 +143,37 @@ class Transaction extends React.Component {
                             </p>
                             <div className="transaction">
                                 <div style={{margin: 15}}>
-                                    <NavLink to={`/admin/assignmentContract/${c.id}`}>
+                                    <NavLink 
+                                    to={{
+                                      pathname: '/admin/assignmentContract',
+                                      stateContract: 'isDrafting',
+                                      previewStep: false,
+                                      stepContract: 3,
+                                      stepForm: 2,
+                                      forms: mockdata,
+                                      search: `?id=${0}`,
+                                      isMocked: true
+                                    }}
+                                   >
                                         <Icon color="primary">remove_red_eye</Icon>
                                     </NavLink>
                                 </div>
                                 <div style={{margin: 15}}>
-                                    <NavLink to={`/admin/assignmentContract/${c.id}`}>
+                                    <NavLink to={{
+                                      pathname: '/admin/assignmentContract',
+                                      stateContract: 'isEditing',
+                                      previewStep: false,
+                                      stepContract: 3,
+                                      stepForm: 2,
+                                      forms: mockdata,
+                                      search: `?id=${0}`,
+                                      isMocked: true
+                                    }}>
                                         <Icon color="secondary">edit</Icon>
                                     </NavLink>
                                 </div>
                                 <div style={{margin: 15}}>
-                                    <NavLink to={`/admin/assignmentContract/${c.id}`}>
-                                        <Icon color="action">send</Icon>
-                                    </NavLink>
+                                    <Icon color="action">send</Icon>
                                 </div>
                             </div>
                             
