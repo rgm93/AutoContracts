@@ -212,19 +212,41 @@ button[disabled]{
 }
 
 .contractPreviewStepsStyle {
-    width: calc(101%);
+    width: calc(100%);
 }
 
 .contractStepsStyle {
     width: calc(101% - 110px);
 }
 
+
+.viewerDraftContainer {
+    display: flex;
+}
+
+.finalViewer {
+    width: 100%;
+    margin-top: 5%;
+}
+
 @media (max-width: 1400px) {
     .contractPreviewStepsStyle {
-        width: calc(102%);
+        width: calc(100% + 20px);
     }
     .contractStepsStyle {
         width: calc(102% - 100px);
+    }
+    .viewerDraftContainer {
+        width: calc(100% - 5px);
+    }
+    .finalViewer {
+        width: calc(100% - 20px);
+    }
+}
+
+@media (max-width: 1310px) {
+    .viewerDraftContainer {
+        margin-bottom: 4%;
     }
 }
 
@@ -233,25 +255,33 @@ button[disabled]{
         max-width: 1140px;
     }
     .contractPreviewStepsStyle {
-        width: calc(105%);
+        width: calc(100% + 25px);
     }
     .contractStepsStyle {
         width: calc(105% - 130px);
+    }
+    .viewerDraftContainer {
+        width: calc(100% - 10px);
+        margin-bottom: 5%;
+    }
+    .finalViewer {
+        width: calc(100% - 25px);
     }
 }
 
 @media (max-width: 660px) {
     .contractPreviewStepsStyle {
-        width: calc(110%);
+        width: calc(100% + 30px);
     }
     .contractStepsStyle {
         width: calc(110% - 150px);
     }
-}
-
-@media (max-width: 570px) {
-    .contractPreviewStepsStyle {
-        width: calc(115%);
+    .viewerDraftContainer {
+        width: calc(100% - 15px);
+        margin-bottom: 8%;
+    }
+    .finalViewer {
+        width: calc(100% - 30px);
     }
 }
 

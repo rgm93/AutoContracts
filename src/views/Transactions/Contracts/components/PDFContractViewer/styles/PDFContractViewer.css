@@ -1,0 +1,9 @@
+.viewerSpinner {
+    width: calc(100% - 30px);
+    padding: 20% 0px 0% 45%;
+    margin: 12% 0 30% 0;
+}
+.viewerSpinnerFinal {
+    width: calc(100% - 30px);
+    padding: 20% 0px 0% 45%;
+}

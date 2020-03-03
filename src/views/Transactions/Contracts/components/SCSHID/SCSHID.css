@@ -38,12 +38,17 @@ body {
 .sigContainer {
     width: auto;
     height: 80%;
+    margin-top: 4%;
+    text-align: center;
+}
+
+.masterContainer {
     margin-top: 10%;
     text-align: center;
 }
 
 .sigPad {
-    margin-top: 5%;
+    margin-top: 3%;
     background-color: #fff;
 }
 
@@ -93,4 +98,35 @@ body {
 .mnemonicInput {
     margin: 5%;
 }
+
+
+
+@media (max-width: 1200px) {
+    .sigContainer {
+        width: auto;
+        height: 80%;
+        margin-top: 4%;
+        margin-right: 4%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 660px) {
+    .sigContainer {
+        width: auto;
+        height: 80%;
+        margin-top: 5%;
+        margin-right: 5%;
+        text-align: center;
+    }
+    .sigPad {
+        margin-top: 3%;
+        margin-right: 3%;
+        width: 90%;
+        background-color: #fff;
+    }
+}
+
+
+
   

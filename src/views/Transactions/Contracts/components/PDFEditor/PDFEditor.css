@@ -1,0 +1,32 @@
+.editorContent {
+    width: calc(100% - 5px); 
+    height: 500px;
+}
+
+.editorBody {
+    overflow: auto;
+    border: 4px solid gray;
+    height: 430px;
+}
+
+@media (max-width: 1400px) {
+    .editorContent {
+        width: calc(100% - 20px); 
+    }
+}
+
+@media (max-width: 1200px) {
+    .editorContent {
+        width: calc(100% - 30px); 
+        height: 500px;
+    }
+    .editorBody {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 660px) {
+    .editorContent {
+        width: calc(100% - 35px); 
+    }
+}

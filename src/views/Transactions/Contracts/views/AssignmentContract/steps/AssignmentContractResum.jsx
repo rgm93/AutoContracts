@@ -58,7 +58,7 @@ class AssignmentContractResume extends React.Component {
     render() {
         const data = this.props.data;
         console.log('formData', data)
-        let partTotal = data[1].conditional.selectorTP === 'Parcial' ? ' parte' : 'totalidad';
+        let partTotal = data[1].conditional && data[1].conditional.selectorTP === 'Parcial' ? ' parte' : 'totalidad';
         let partTotalCurrency = data[1].form.assignmentDetails.assignmentAmmount;
         let primerReq = data[1].conditional['¿Se regula una garantía a primer requerimiento?']
         let limitTime = data[1].form.assignmentDetails.assignmentAmmount.payDetails.limitHour['hour'] + ':' + data[1].form.assignmentDetails.assignmentAmmount.payDetails.limitHour['minutes']

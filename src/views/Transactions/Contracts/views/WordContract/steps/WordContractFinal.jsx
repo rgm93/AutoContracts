@@ -8,7 +8,7 @@ import "../contract/WordContract.css";
 //import formdata from "../../AssignmentContract/json/formData.json";
 //import ReactS3 from "react-s3";
 import SCSHID from "../../../components/SCSHID/SCSHID";
-import PDFEditor from "../../PDFEditor";
+import PDFEditor from "../../../components/PDFEditor/PDFEditor";
 import mockdata from "../../AssignmentContract/json/mockup.json";
 
 import PDFContractViewer from "../../../components/PDFContractViewer/PDFContractViewer"

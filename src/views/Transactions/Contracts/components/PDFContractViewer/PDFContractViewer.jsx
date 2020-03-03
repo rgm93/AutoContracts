@@ -4,6 +4,7 @@ import { logo } from "assets/img/scapeshift/sc_logo.js"
 import { SphereSpinner } from "react-spinners-kit";
 import html2pdf from 'html2pdf.js';
 import { resolve } from "url";
+import "./styles/PDFContractViewer.css";
 
 //var fs = require("fs");
 var pdfMake = require("pdfmake/build/pdfmake");
@@ -232,7 +233,7 @@ class PDFContractViewer extends React.Component {
         <div>
            {
              loading ? (
-                <div style={{width: 'calc(100% - 30px)', padding: "20% 0px 0% 45%", margin: "10% 0 40% 0"}}>
+                <div className={this.props.viewerSpinnerFinal != undefined ? this.props.viewerSpinnerFinal : "viewerSpinner"}>
                   <SphereSpinner
                     size={60}
                     color="#00a6ac"
@@ -240,7 +241,7 @@ class PDFContractViewer extends React.Component {
                   />
                 </div>
               ) : (
-                <div>
+                <div style={{marginTop: '6.2%'}}>
                     <iframe title="pdf" src={document} style={{width: "100%", height: hght}} />
                 </div>
               )

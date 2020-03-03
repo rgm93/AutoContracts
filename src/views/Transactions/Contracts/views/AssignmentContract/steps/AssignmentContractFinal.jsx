@@ -9,7 +9,7 @@ import "../contract/AssignmentContract.css";
 //import ReactS3 from "react-s3";
 import AssignmentContractResum from "./AssignmentContractResum";
 import SCSHID from "../../../components/SCSHID/SCSHID";
-import PDFEditor from "../../PDFEditor";
+import PDFEditor from "../../../components/PDFEditor/PDFEditor";
 //import PDFEditor5 from "../../PDFEditor5"
 import mockdata from "../../AssignmentContract/json/mockup.json";
 
@@ -204,16 +204,13 @@ class AssignmentContractFinal extends React.Component {
 
   render() {
     const { state, html, form } = this.state
-    console.log('formsFinal', form)
-    console.log('html', html)
     return (
       <div>
         {state === 'isResuming' ? (
           <div>
-            <h3>
-              {" "}
+            <h3 style={{textAlign: 'center', width: 'calc(100% - 30px)', margin: '3% 0% 3% 0'}}>
               Por favor, compruebe que todos los datos están correctos antes de
-              generar el contrato{" "}
+              generar el contrato
             </h3>
             <AssignmentContractResum data={this.state.form} />
             <div className="buttons">
@@ -244,9 +241,9 @@ class AssignmentContractFinal extends React.Component {
           </div>
         ) : state === 'isDrafting' ? (
           <div>
-          <div style={{display: 'flex'}}>
+          <div className="viewerDraftContainer">
             {/*<PDFContract data={this.state.form} />*/}
-            <div style={{width: '50%',  marginTop: "4%"}}>
+            <div style={{width: '70%', marginLeft: "5%"}}>
               {/*<PDFContractPreview
                 data={this.getData()}
                 html={this.getHTML}
@@ -370,8 +367,8 @@ class AssignmentContractFinal extends React.Component {
                   onClick={this.editContract}>Editar contrato</button>*/}
           </div>
         ) : state === 'isFinal' ? (
-          <div style={{width: 'calc(100% - 30px)', marginTop: "5%"}}>
-            <PDFContractViewer data={this.getData()} height="450px" />
+          <div className="finalViewer">
+            <PDFContractViewer data={this.getData()} height="450px" viewerSpinnerFinal="viewerSpinnerFinal" />
           </div>
         ) : null }
       </div>

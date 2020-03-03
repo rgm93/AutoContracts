@@ -39,7 +39,7 @@ class AssignmentContract extends Component {
       forms: this.props.location.forms != undefined ? this.props.location.forms : [],
       previewForm: [],
       previewStep: this.props.location.stepForm != undefined ? this.props.location.previewStep : true,
-      stateContract: this.props.location.stateContract != undefined ? this.props.location.stateContract : 'isCreating',
+      stateContract: this.props.location.stateContract != undefined ? this.props.location.stateContract : 'isResuming',
       isMocked: this.props.location.isMocked != undefined ? this.props.location.isMocked : false
    }
 
@@ -114,8 +114,10 @@ class AssignmentContract extends Component {
 
    render() {
       const step = this.state.step - 1
-      const { previewForm, forms, previewStep, stepForm, stateContract, isMocked } = this.state
+      const { previewForm, forms, previewStep, stepForm, isMocked } = this.state
       console.log('isis', isMocked)
+      console.log('state', this.state.stateContract)
+      const stateContract = !this.state.stateContract && stepForm === schema.length ? 'isResuming' : this.state.stateContract
       //console.log('previewForm', previewForm)
       //console.log('forms', forms)
       

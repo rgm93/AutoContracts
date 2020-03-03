@@ -20,6 +20,8 @@ export default class SCSHID extends React.Component {
       trimmedDataURL: null,
       mnemonicEncrypted: '',
       mnemonicPhrase: '',
+      realSign: '',
+      signState: 'sign',
       real: false
     }
     this.sigPad = {}
@@ -30,12 +32,16 @@ export default class SCSHID extends React.Component {
   }
 
   validate = () => {
-    var a = this.sigPad.getTrimmedCanvas().toDataURL('image/jpg');
-    var doc = this.props.data.replace(/<img id="firma1" src\s*=*(.+?)\\*"\s*\/>/g, `<img id="firma1" src=${a} style="width: 100px; height: 100px" />`);
-
-    doc = doc.replace(/<img id="firma2" src\s*=*(.+?)\\*"\s*\/>/g, `<img id="firma2" src=${a} style="width: 100px; height: 100px" />`);
-    this.props.handleHTML(doc)
-    this.props.next()
+    if(this.state.signState === 'sign') {
+      this.setState({signState: 'master', realSign: this.sigPad.getTrimmedCanvas().toDataURL('image/jpg')})
+    }
+    else if (this.state.signState === 'master') {
+      var doc = this.props.data.replace(/<img id="firma1" src\s*=*(.+?)\\*"\s*\/>/g, `<img id="firma1" src=${this.state.realSign} style="width: 100px; height: 100px" />`);
+      doc = doc.replace(/<img id="firma2" src\s*=*(.+?)\\*"\s*\/>/g, `<img id="firma2" src=${this.state.realSign} style="width: 100px; height: 100px" />`);
+      this.props.handleHTML(doc)
+      this.props.next()
+    }
+    
     /*
     if (this.sigPad.getTrimmedCanvas() !== [] && this.state.mnemonicPhrase == '') {
       //this.setState({trimmedDataURL: this.sigPad.getTrimmedCanvas()
@@ -61,39 +67,52 @@ export default class SCSHID extends React.Component {
   }
   render () {
     return (
-      <div className="sigContainer">
-          <h3>Firma</h3>
-          <h5>Utiliza el ratón para trazar tu firma</h5>
-            <SignaturePad canvasProps={{className: "sigPad"}}
-              ref={(ref) => { this.sigPad = ref }} />
-          <div style={{width: 'auto', marginTop: "3%"}}>
-            <button className="buttonSignClear" onClick={this.clear}>
-              Borrar
-            </button>
-          </div>
-          <h3>Doble factor de autentificación</h3>
-          <h4>Escribe la contraseña maestra proporcionada</h4>
-          <div className="mnemonicInput">
-            <GridContainer justify="center">
-              <GridItem xs={12} sm={12} md={6}>
-                <CustomInput
-                  id="error"
-                  error
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    onChange: (event) => this.handleInput('mnemonic', event),
-                    type: 'text',
-                    placeholder: "Contraseña maestra",
-                  }}
-                />
-              </GridItem>
-            </GridContainer>
-          </div>
-          <button className="buttonSignConfirm" onClick={this.validate}>
-              Validar
-          </button>
+      <div>
+        {
+          this.state.signState === 'sign' ? (
+            <div className="sigContainer">
+              <h3>Firma</h3>
+              <h5>Utiliza el ratón para trazar tu firma</h5>
+                <SignaturePad canvasProps={{className: "sigPad"}}
+                  ref={(ref) => { this.sigPad = ref }} />
+              <div style={{width: 'auto', marginTop: "3%"}}>
+                <button className="buttonSignClear" onClick={this.clear}>
+                  Borrar
+                </button>
+                <button className="buttonSignConfirm" onClick={this.validate}>
+                    Firmar
+                </button>
+              </div>
+            </div>
+            
+          ) : this.state.signState === 'master' ? (
+            <div className="masterContainer">
+              <h3>Doble factor de autentificación</h3>
+              <h4>Escribe la contraseña maestra proporcionada</h4>
+              <div className="mnemonicInput">
+                <GridContainer justify="center">
+                  <GridItem xs={12} sm={12} md={6}>
+                    <CustomInput
+                      id="error"
+                      error
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onChange: (event) => this.handleInput('mnemonic', event),
+                        type: 'text',
+                        placeholder: "Contraseña maestra",
+                      }}
+                    />
+                  </GridItem>
+                </GridContainer>
+              </div>
+              <button className="buttonSignConfirm" onClick={this.validate}>
+                  Validar
+              </button>
+            </div>
+          ) : null
+        }
        </div>
       )
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { contract } from './AssignmentContract/mockups/mockupContract.js';
+import { contract } from '../../views/AssignmentContract/mockups/mockupContract.js';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 //import DecoupledEditor from '@ckeditor/ckeditor5-editor-decoupled/src/decouplededitor';

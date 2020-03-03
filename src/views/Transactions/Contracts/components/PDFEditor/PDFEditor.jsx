@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { contractMockup } from './AssignmentContract/mockups/mockupContract.js';
-import { contract } from './AssignmentContract/mockups/mockContract.js';
+import { contractMockup } from '../../views/AssignmentContract/mockups/mockupContract.js';
+import { contract } from '../../views/AssignmentContract/mockups/mockContract.js';
 import CKEditor from 'ckeditor4-react';
 
-import "./AssignmentContract/contract/AssignmentContract.css";
+import "../../views/AssignmentContract/contract/AssignmentContract.css";
+import "../PDFEditor/PDFEditor.css"
 
 export default class PDFEditor extends Component {
 	constructor(props) {
@@ -39,8 +40,8 @@ export default class PDFEditor extends Component {
 
 	render() {
 		return (
-			<div style={{width: 'calc(100% - 30px)', marginTop: "5%"}}>
-				<div style={{overflow: 'auto', marginTop: '25px', border: '4px solid gray'}}>
+			<div className="editorContent">
+				<div className="editorBody">
 					<CKEditor
                         data={this.state.data}
                         config={{
