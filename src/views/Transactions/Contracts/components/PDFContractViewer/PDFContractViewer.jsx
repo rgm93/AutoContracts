@@ -211,6 +211,7 @@ class PDFContractViewer extends React.Component {
     pdfDocGenerator.getDataUrl((dataUrl) => {
       //console.log('dataURL', dataUrl)
       this.setState({document: dataUrl, loading: false})
+      this.props.loaded(true)
     });
   };
 
@@ -241,7 +242,7 @@ class PDFContractViewer extends React.Component {
                   />
                 </div>
               ) : (
-                <div style={{marginTop: '6.2%'}}>
+                <div style={{marginTop: '4%'}}>
                     <iframe title="pdf" src={document} style={{width: "100%", height: hght}} />
                 </div>
               )

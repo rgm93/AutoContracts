@@ -69,6 +69,13 @@ span.required {
     display: flex;
     margin: 2.7% auto;
     justify-content: center;
+    padding: 15% 15% 0% 15%;
+}
+.buttonsLoaded {
+    display: flex;
+    margin: 2.7% auto;
+    justify-content: center;
+    padding: 0.2% 15% 0% 15%;
 }
 
 .buttonStepsBack:focus { outline: none !important; }
@@ -212,7 +219,7 @@ button[disabled]{
 }
 
 .contractPreviewStepsStyle {
-    width: calc(100%);
+    width: 100%;
 }
 
 .contractStepsStyle {

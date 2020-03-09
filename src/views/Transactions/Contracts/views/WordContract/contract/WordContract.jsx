@@ -24,10 +24,11 @@ const steps = [
 
 class WordContract extends Component {
    state = {
-      step: 1,
-      forms: [],
+      step: this.props.location.stepContract != undefined ? this.props.location.stepContract : 1,
+      forms: this.props.location.forms != undefined ? this.props.location.forms : [],
       previewForm: [],
-      previewStep: true,
+      previewStep: this.props.location.stepForm != undefined ? this.props.location.previewStep : true,
+      stateContract: this.props.location.stateContract != undefined ? this.props.location.stateContract : 'isResuming',
    }
 
    scrollUp = () => {
@@ -78,11 +79,14 @@ class WordContract extends Component {
       }
    }
 
-   
+   componentDidMount() {
+      console.log('state', this.state)
+   }
 
    render() {
       const step = this.state.step - 1
       const { previewStep/*, previewForm*/ } = this.state
+      const stateContract = !this.state.stateContract ? 'isResuming' : this.state.stateContract
       console.log('step', step)
       return (
          <div className='container'>
@@ -100,6 +104,7 @@ class WordContract extends Component {
                      {  
                         <WordContractFinal
                            forms={this.state.forms}
+                           state={stateContract}
                            nextStep={this.nextStep} 
                            prevStep={this.state.step !== 0 ? this.prevStep : null}
                            step={step}

@@ -51,7 +51,10 @@ class AssignmentContract extends Component {
    nextFormStep = () => {
       this.scrollUp();
       this.setState({ stepForm: this.state.stepForm + 1 })
-      if (this.state.stepForm + 1 === schema.length) { this.nextStep() }
+      if (this.state.stepForm + 1 === schema.length) { 
+         this.setState({stateContract: 'isResuming'})
+         this.nextStep() 
+      }
    }
 
    prevFormStep = () => {

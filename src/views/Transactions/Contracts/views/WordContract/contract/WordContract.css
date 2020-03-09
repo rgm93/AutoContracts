@@ -64,11 +64,22 @@ span.required {
     cursor: pointer;
     margin-right: 3%;
 }
-
+.importButton {
+    display: flex;
+    margin: 2.7% auto;
+    justify-content: center;
+}
 .buttons {
     display: flex;
     margin: 2.7% auto;
     justify-content: center;
+    padding: 15% 15% 0% 15%;
+}
+.buttonsLoaded {
+    display: flex;
+    margin: 2.7% auto;
+    justify-content: center;
+    padding: 0.2% 15% 0% 15%;
 }
 
 .buttonStepsBack:focus { outline: none !important; }
@@ -141,6 +152,10 @@ button[disabled]{
 
 .pdf {
     margin: 3%;
+}
+
+.viewerDraftContainer {
+    display: flex;
 }
 
 .contractStates {

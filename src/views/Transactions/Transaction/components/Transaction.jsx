@@ -16,9 +16,13 @@ import "../styles/Transaction.css"
 import AssignmentContractFinal from "../../Contracts/views/AssignmentContract/steps/AssignmentContractFinal";
 import mockdata from "../../Contracts/views/AssignmentContract/json/mockup.json";
 
+import Modal from "components/Modal/Modal.js";
+import CustomModalSendParticipants from "components/CustomModal/CustomModalSendParticipants/CustomModalSendParticipants.jsx";
+
 class Transaction extends React.Component {
   state = {
-    contracts: []
+    contracts: [],
+    show: false
   };
   componentDidMount() {
     console.log("tc", transactionMockup);
@@ -66,6 +70,17 @@ class Transaction extends React.Component {
     }
     return s;
   };
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
+
+  sendDrawer = participant => {
+    console.log('sending to...', participant)
+  }
   render() {
     const { classes } = this.props;
     const { contracts } = this.state;
@@ -173,10 +188,13 @@ class Transaction extends React.Component {
                                     </NavLink>
                                 </div>
                                 <div style={{margin: 15}}>
-                                    <Icon color="action">send</Icon>
+                                  <CustomModalSendParticipants 
+                                    modalTitle="Enviar borrador"
+                                    participants={[]}
+                                    sendData={this.sendDrawer}
+                                  />
                                 </div>
                             </div>
-                            
                             {/*<NavLink to={"/admin/assignmentContract"}>
                                 <Button round color="primary">
                                 {this.getTransactionStateButton(c.data.state)}
@@ -184,7 +202,7 @@ class Transaction extends React.Component {
                              </NavLink>*/}
                             </CardBody>
                         </Card>
-                  </GridItem>
+                    </GridItem>
                 ))}
             </GridContainer>
       </div>

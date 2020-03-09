@@ -67,7 +67,7 @@ export default class PDFEditor extends Component {
 						onBeforeLoad={(CKEDITOR) => (CKEDITOR.disableAutoInline = true)}
 					/>
 				</div>
-				<div className="buttons">
+				<div className="buttonsLoaded">
 					<button className="buttonStepsBack" onClick={() => this.props.changeView('isDrafting')}>Atrás</button>
 					<button className="buttonGeneratePDF" onClick={() => this.handleDataContent('isDrafting')}>Generar borrador</button>
 				</div>

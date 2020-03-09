@@ -1,0 +1,12 @@
+.buttonSendPDF {
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    border-color: rgb(110, 77, 172);
+    background-color: rgb(106, 77, 172);
+    color: white;
+    padding: 0.375rem 0.75rem;
+    margin: 0% 2% 0% 0%;
+    font-size: 1rem;
+    line-height: 1.5;
+    cursor: pointer;
+}

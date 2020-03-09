@@ -1,0 +1,23 @@
+.selCenter {
+    margin: 10% 0 5%;
+    text-align: center;
+}
+
+.sendButton {
+    display: flex;
+    margin: 2.7% auto;
+    justify-content: center;
+}
+
+.button {
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    border-color: rgb(77, 102, 172);
+    background-color: rgb(77, 102, 172);
+    color: white;
+    padding: 0.375rem 0.75rem;
+    margin: 0% 0% 0% 2%;
+    font-size: 1rem;
+    line-height: 1.5;
+    cursor: pointer;
+}
